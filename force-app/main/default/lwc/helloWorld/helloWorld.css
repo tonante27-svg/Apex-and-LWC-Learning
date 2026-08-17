@@ -1,0 +1,33 @@
+:host {
+  /* Base typography and theming scoped to this component */
+  --hello-font-size: 3.5rem; /* ~56px */
+  --message-font-size: 2.25rem; /* ~36px */
+  --hello-text-color: #1b1b1d; /* SLDS-adjacent text color */
+  --message-text-color: #1b1b1d;
+  --hello-bg: #ffffff;
+  --message-bg: #f3f2f2; /* SLDS Gray 1 */
+  font-family: "Salesforce Sans", Arial, Helvetica, sans-serif;
+  display: block;
+}
+.person-info{
+    padding: 10px;
+    background: rgb(203, 203, 155);
+    border-bottom:10px solid black;
+}
+.heading{
+      padding: 10px;
+    background: darkcyan;
+}
+.hello {
+  font-size: var(--hello-font-size);
+  font-weight: 100; /* Replaces invalid font-family: t-size */
+  /*line-height: 1.2; */
+  color: black;
+  background: whitesmoke;
+}
+
+.message {
+  font-size: 36px;
+  color: black;
+  background: lightgray;
+}

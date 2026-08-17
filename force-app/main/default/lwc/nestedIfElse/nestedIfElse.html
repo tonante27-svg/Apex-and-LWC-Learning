@@ -1,0 +1,36 @@
+<template>
+      <lightning-card title="School Exam Grade Results" icon-name="standard:image">
+        <div class="slds-var-p-around_medium">
+            <div class="slds-var-m-top_medium">
+                <lightning-input label="Get Grades" data-id="gradeInput"  onchange={handleMarks} class="slds-var-m-right_small"></lightning-input>
+                 <lightning-button variant="brand" label="Define User"  title="Define User" onclick={handleDefineUser}></lightning-button>
+            </div>
+          <template lwc:if={isAPlus}>
+                <p>WOW!! Phenomenal  A+ Score!! </p>
+            </template> 
+            <template lwc:elseif={isA}>
+            <p>Great!! you did pretty good you scored an A</p>
+            </template>
+            <template lwc:elseif={isB}>
+            <p>Well... you did pretty good you scored a B</p>
+            </template>  
+            <template lwc:else>
+                <p>Ah Sorry, maybe you should have audited the course? </p>
+            </template>  
+
+                         
+            
+            
+        </div>
+         <div if:true={person} class="slds-var-m-around_medium">
+            Name: {person.name}<br/>
+            Title: {person.title}<br/>
+            Age:    {person.age}
+        </div>
+        <div if:true={user} class="slds-var-m-around_medium">
+            User name: {user.name}
+        </div>
+
+    
+      </lightning-card>
+</template>

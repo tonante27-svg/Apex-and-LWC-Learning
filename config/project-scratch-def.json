@@ -1,0 +1,23 @@
+{
+  "orgName": "tonantehome company",
+  "edition": "Developer",
+  "hasSampleData": true,
+  "adminEmail": "tonante27@gmail.com",
+  "features": [
+    "EnableSetPasswordInApi",
+    "Communities",
+    "ContactsToMultipleAccounts",
+    "Knowledge"
+  ],
+  "settings": {
+    "lightningExperienceSettings": {
+      "enableS1DesktopEnabled": true
+    },
+    "mobileSettings": {
+      "enableS1EncryptedStoragePref2": false
+    },
+    "quoteSettings": {
+      "enableQuote": true
+    }
+  }
+}

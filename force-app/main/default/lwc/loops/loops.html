@@ -1,0 +1,22 @@
+<template>
+    <lightning-card variant="Narrow" title="For Loop in LWC" icon-name="standard:account">
+       <div class="slds-var-p-around_medium">
+        <template if:true={contacts} for:each={contacts} for:item="item" for:index="index">
+            <li key={item.id}>
+                <div>
+                 Name:   {item.FirstName} {item.LastName}
+                </div>
+                <div>
+                Email:    {item.Email}
+                </div>
+                <div>
+                Title:     {item.Title}
+                </div>
+                <div class="slds-var-p-around_small"><img src={item.Picture} width="150" height="150" alt={item.FirstName}/></div>
+            </li>
+        </template>
+            
+       </div>
+    <div slot="footer">Card Footer</div>
+    </lightning-card>
+</template>
