@@ -33,7 +33,7 @@ export default class Calculator extends LightningElement {
         return this.result;
         }else{
             this.result = 0;
-            this.essageText  = 'Please eneter both numbers';
+            this.messageText  = 'Please eneter both numbers';
             this.showToast();
         }
     }
