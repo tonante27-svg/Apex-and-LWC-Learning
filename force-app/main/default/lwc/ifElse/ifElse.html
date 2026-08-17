@@ -1,0 +1,18 @@
+<template>
+    <lightning-card title="Tom & Jerry" icon-name="standard:image">
+        <div class="slds-p-around_medium">
+            <template if:true={isJerry}>
+                <img src={jerryUrl} width="200" height="300" alt="Jerry">
+            </template>
+
+            <template if:true={isTom}>
+                <img src={tomUrl} width="200" height="300" alt="Tom">
+            </template>
+
+            <div class="slds-var-m-top_medium">
+                <lightning-button label="Show Jerry" onclick={showjerry} class="slds-m-right_small"></lightning-button>
+                <lightning-button label="Show Tom" onclick={showTom}></lightning-button>
+            </div>
+        </div>
+    </lightning-card>
+</template>

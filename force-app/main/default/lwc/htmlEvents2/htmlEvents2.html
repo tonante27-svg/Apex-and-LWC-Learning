@@ -1,0 +1,17 @@
+<template>
+     <lightning-card title="New Employees Data Entry" icon-name="standard:image">
+       <div>
+        <h1>New Hire Form</h1>
+        <div class="slds-var-m-top_medium">
+            <lightning-input type="text" label="Full Name" onchange={handleNameChange} data-id="empName"></lightning-input>
+            <lightning-input type="email" label="Email" onchange={handleEmailChange} data-id="empEmail"></lightning-input>
+            <lightning-input type="tel" label="Phone" onchange={handlePhoneChange} data-id="empPhone"></lightning-input>
+            <lightning-input type="number" label="Age" data-id="empAge"></lightning-input>
+            <lightning-input type="number" label="Salary" data-id="empSalary"></lightning-input>
+        </div>
+        <div class="slds-var-m-top_medium">
+            <lightning-button variant="brand" label="Add Employee" title="Insert New Employee Record" onclick={handleInsertRecord} class="slds-var-m-left_x-small"></lightning-button>
+        </div>
+        </div>
+    </lightning-card>
+</template>

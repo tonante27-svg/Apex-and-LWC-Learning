@@ -1,0 +1,30 @@
+<template>
+    <lightning-card title="Contact Finder" icon-name="standard:contact">
+        <div class="slds-var-m-around_medium">
+            <lightning-input 
+                type="search" 
+                value={searchTerm} 
+                label="Search by Full Name (e.g. John Smith)" 
+                onchange={handleSearchTerm}
+                placeholder="First Last">
+            </lightning-input>
+        </div>
+
+        <div style="height: 300px;">
+            <template if:true={wiredContacts.data}>
+                <lightning-datatable
+                    key-field="Id"
+                    data={processedContacts}
+                    columns={columns}
+                    hide-checkbox-column>
+                </lightning-datatable>
+            </template>
+            
+            <template if:true={wiredContacts.data}>
+                <p if:false={processedContacts.length} class="slds-var-m-around_medium">
+                    No contacts found matching that name.
+                </p>
+            </template>
+        </div>
+    </lightning-card>
+</template>
