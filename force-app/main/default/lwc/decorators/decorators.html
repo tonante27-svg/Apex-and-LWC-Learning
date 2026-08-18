@@ -1,0 +1,36 @@
+<template>
+    <lightning-card title="Decorators" icon-name="standard:account">
+        <div class="slds-var-p-horizontal_medium">
+            <h1>Decorators</h1>
+        </div>
+        <template  lwc:if={user}>
+            <div class="slds-var-p-horizontal_large"> 
+                <h1>Name: {user.name}</h1>
+                <h1>Age: {user.age}</h1>
+            </div>
+            <template  lwc:if={user.address}>
+                <div class="slds-var-p-horizontal_large">
+                
+                    <h1>City: {user.address.city}</h1>
+                    <h1>State: {user.address.state}</h1>
+                    <template if:true={user.address.country}>
+                        <h1>Country: {user.address.country.name}</h1>
+                        <h1>CCode: {user.address.country.code}</h1>
+                    </template>
+            
+                    <template lwc:if={user.address.postalCode.zip}>
+                        <h1>Zip: {user.address.postalCode.zip}</h1>
+                    </template>
+                    <template  lwc:if={user.address.postalCode.provence}>
+                        <h1>Provence: {user.address.postalCode.provence}</h1>
+                    </template>
+                </div>
+            </template>
+        </template>
+
+        <div class="slds-var-p-horizontal_large">
+            <lightning-button variant="success" label="Change Info" onclick={handleChangeInfo}></lightning-button>
+        </div>
+        <div slot="footer">Decorators in LWC</div>
+    </lightning-card>
+</template>

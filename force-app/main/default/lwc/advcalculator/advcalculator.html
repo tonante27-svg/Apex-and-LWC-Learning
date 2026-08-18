@@ -1,0 +1,133 @@
+<template>
+    <lightning-card title="Advanced Calculator" icon-name="custom:custom14">
+        <div class="slds-var-p-around_medium">
+             <h1>Expressions</h1>        </div>
+        <div class="slds-var-p-around_medium">
+            <lightning-input type="text" value={evalString} label="Output" disabled></lightning-input>
+        </div>
+        <div class="slds-var-p-horizontal_large">
+            <h1><b>=:{outputValue}</b></h1>
+        </div>
+    <div class="slds-grid slds-gutters slds-var-p-horizontal_large">
+        <div class="slds-col slds-size_1-of-4">
+            <span>
+            <lightning-button variant="neutral" label="7" onclick={handleButtonType}></lightning-button>
+             
+            </span>
+              &nbsp;&nbsp;
+        </div>
+        <div class="slds-col slds-size_1-of-4">
+            <span>
+                <lightning-button variant="neutral" label="8" onclick={handleButtonType}></lightning-button>
+                 
+            </span>
+             &nbsp;&nbsp;
+        </div>
+        <div class="slds-col slds-size_1-of-4">
+            <span>
+                <lightning-button variant="neutral" label="9" onclick={handleButtonType}></lightning-button>
+             &nbsp;&nbsp;
+            </span>
+             &nbsp;&nbsp;
+        </div>
+        <div class="slds-col slds-size_1-of-4">
+            <span>
+                <lightning-button variant="neutral" label="/" onclick={handleButtonType}></lightning-button>
+            </span>
+             &nbsp;&nbsp;
+        </div>
+    </div>
+    <div class="slds-grid slds-gutters slds-var-p-horizontal_large">
+        <div class="slds-col slds-size_1-of-4">
+            <span>
+                <lightning-button variant="neutral" label="4" onclick={handleButtonType}></lightning-button>
+                  &nbsp;&nbsp;
+            </span>
+             &nbsp;&nbsp;
+        </div>
+        <div class="slds-col slds-size_1-of-4">
+            <span>
+                <lightning-button variant="neutral" label="5" onclick={handleButtonType}></lightning-button>
+                  &nbsp;&nbsp;
+            </span>
+        </div>
+        <div class="slds-col slds-size_1-of-4">
+            <span>
+                <lightning-button variant="neutral" label="6" onclick={handleButtonType}></lightning-button>
+                  &nbsp;&nbsp;
+            </span>
+        </div>
+        <div class="slds-col slds-size_1-of-4">
+            <span>
+                <lightning-button variant="neutral" label="*" onclick={handleButtonType}></lightning-button>
+                &nbsp;&nbsp;
+            </span>
+        </div>
+    </div>
+    <div class="slds-grid slds-gutters slds-var-p-horizontal_large">
+        <div class="slds-col slds-size_1-of-4">
+            <span>
+                <lightning-button variant="neutral" label="1" onclick={handleButtonType}></lightning-button>
+                 &nbsp;&nbsp;
+            </span>
+             &nbsp;&nbsp;
+        </div>
+        <div class="slds-col slds-size_1-of-4">
+            <span>
+                <lightning-button variant="neutral" label="2" onclick={handleButtonType}></lightning-button>
+                &nbsp;&nbsp;
+            </span>
+        </div>
+        <div class="slds-col slds-size_1-of-4">
+            <span>
+                <lightning-button variant="neutral" label="3" onclick={handleButtonType}></lightning-button>
+            &nbsp;&nbsp;
+            </span>
+        </div>
+        <div class="slds-col slds-size_1-of-4">
+            <span>
+                <lightning-button variant="neutral" label="-" onclick={handleButtonType}></lightning-button>
+            &nbsp;&nbsp;
+            </span>
+             &nbsp;&nbsp;
+        </div>
+    </div>
+    <div></div>
+    <div class="slds-grid slds-gutters slds-var-p-horizontal_large">
+        <div class="slds-col slds-size_1-of-4">
+            <span>
+                <lightning-button variant="neutral" label="0" onclick={handleButtonType}></lightning-button>
+            
+            </span>
+            
+        </div>
+        <div class="slds-col slds-size_1-of-4">
+            <span>
+                <lightning-button variant="neutral" label="." onclick={handleButtonType}></lightning-button>
+           
+            </span>
+        </div>
+        <div class="slds-col slds-size_1-of-4">
+            <span>
+                <lightning-button variant="neutral" label="=" onclick={handleButtonType}></lightning-button>
+           
+            </span>
+        </div>
+        <div class="slds-col slds-size_1-of-4">
+            <span>
+                <lightning-button variant="neutral" label="+" onclick={handleButtonType}></lightning-button>
+           
+            </span>
+        </div>
+        
+    </div>
+     <div class="slds-var-p-horizontal_medium">
+             &nbsp;&nbsp;
+            <lightning-button variant="brand" label="Clear" onclick={handlerClear}></lightning-button>
+            &nbsp;&nbsp;
+            <lightning-button variant="destructive" label="Backspace" onclick={handleBackspace}></lightning-button>     
+            &nbsp;&nbsp;
+    </div>
+    <div slot="footer">AdvCalcFooter</div>
+    </lightning-card>
+</template>
