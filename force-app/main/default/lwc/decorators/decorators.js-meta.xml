@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>65.0</apiVersion>
+    <isExposed>true</isExposed>
+    <masterLabel>Decorators in LWC</masterLabel>
+    <description>A simple LWC component to demonstrate the use of decorators</description>
+<targets>
+    <target>
+        lightning__AppPage
+    </target>
+    <target>
+        lightning__RecordPage
+    </target>
+</targets>
+</LightningComponentBundle>
