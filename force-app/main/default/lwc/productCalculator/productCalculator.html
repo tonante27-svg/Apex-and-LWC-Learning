@@ -1,0 +1,32 @@
+<template>
+    <!--
+       Product Calculator
+    Known Parameters
+       Price
+       Quantity
+       TaxrRate
+    Calculated Parameters : getters and setters
+        subtotal
+        tax
+        total
+        formattedTotal
+    -->
+
+    <lightning-card variant="Narrow" title="ProductCalculator" icon-name="custom:custom65">
+       <lightning-button slot="actions" variant="neutral" label="+1 Quantity" title="+1 Quantity" onclick={handleClick}></lightning-button>
+        <div class="slds-var-p-around_large">
+            <div class="product-information">
+                Price: {price}<br/>
+                Quantity: {quantity}<br/>
+                Tax Rate: {taxRate}
+            </div>
+            <div class="product-information">
+                Sub Total: {subTotal}<br/>
+                Tax: {quantity}<br/>
+                Total: {taxRate}<br/>
+                Formatted: {formattedTotal}
+            </div>
+        </div>
+        <div slot="footer">Product Calculator</div>
+    </lightning-card>
+</template>
