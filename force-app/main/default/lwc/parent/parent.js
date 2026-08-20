@@ -72,5 +72,22 @@ export default class Parent extends LightningElement {
     }
     connectedCallback() {
         console.log('From Parent Connected Callback');
+        this.handleMessage('Inside the HandleMessage');
+        this.loadCss('Inside the Load CSS file.');
+        this.loadExternal('Inside the Load  External file');
+    }
+
+    handleMessage(amessage){
+        console.log(amessage);
+        
+
+    }
+
+    loadCss(amessage){
+        console.log(amessage);
+    }
+
+    loadExternal(amessage){
+        console.log(amessage);
     }
 }

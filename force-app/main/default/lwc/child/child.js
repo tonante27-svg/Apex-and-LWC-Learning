@@ -7,7 +7,6 @@ export default class Child extends LightningElement {
 
     constructor(){
         super();
-        debugger;
          console.log('Inside child constructor');
 
     }
