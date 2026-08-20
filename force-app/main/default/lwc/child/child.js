@@ -12,6 +12,7 @@ export default class Child extends LightningElement {
 
     }
     connectedCallback() {
+         console.log('From Child Connected Callback');
         console.log('Child contact:', this.contact);
         console.log('Child componentType:', this.componentType);
     }
