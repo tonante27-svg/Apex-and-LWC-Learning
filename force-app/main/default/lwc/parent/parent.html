@@ -1,0 +1,18 @@
+<template>
+    <lightning-card title="Component Componsition" icon-name="custom:custom54">
+        <div class="slds-var-m-around_medium">
+               <h1>Parent Component</h1> 
+        </div>
+         <div class="slds-var-m-around_medium">
+              <span>Child Component goes here</span><br/>
+              
+              <template lwc:if={contacts} for:each={contacts} for:item="con">
+                 <c-child key={con.id} contact={con} component-type={message}></c-child>
+              </template>
+        </div>
+      <!-- <div class="slds-var-m-around_medium">
+              <span>Advanced Calulator Goes Here</span><br/>
+              <c-advcalculator></c-advcalculator>
+        </div> -->
+    </lightning-card>
+</template>
