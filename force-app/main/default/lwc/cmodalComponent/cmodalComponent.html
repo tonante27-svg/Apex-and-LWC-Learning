@@ -1,0 +1,20 @@
+<template>
+     <lightning-card title="Contact" icon-name="standard:contact">
+        <div class="slds-var-m-around_large">
+            <header >
+                <!-- Placeholder for header content -->
+                <slot name="title"></slot>
+            </header>
+
+            <div class="slds-var-m-around_medium">
+                <!-- Default placeholder for main body -->
+                <slot></slot> 
+            </div>
+
+            <footer class="slds-var-m-around_medium">
+                <!-- Placeholder for action buttons -->
+                <slot name="footer"></slot>
+            </footer>
+        </div>
+    </lightning-card>
+</template>

@@ -1,0 +1,20 @@
+<template>
+    <lightning-card title="Componsition Lab" icon-name="standard:contact">
+        <div class="slds-var-m-around_medium">
+               <h1>Parent Component</h1> 
+        </div>
+        <div class="slds-var-m-around_medium">
+            <span>Child Component and indirectly its slot goes here</span><br/>
+        </div>    
+            <template for:each={contacts} for:item="con">
+                <c-child-lab key={con.id} contact={con}>
+                    <div slot="contactList">
+                        <p>{con.FirstName}</p>
+                        <p>{con.LastName}</p>
+                        <p>{con.Email}</p>
+                    </div>
+                </c-child-lab>
+            </template> 
+           
+    </lightning-card>
+</template>

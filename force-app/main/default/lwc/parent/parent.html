@@ -4,17 +4,19 @@
                <h1>Parent Component</h1> 
                  {greetings}
         </div>
-      
-         <div class="slds-var-m-around_medium">
-              <span>Child Component goes here</span><br/>
-              
-              <template lwc:if={contacts} for:each={contacts} for:item="con">
-                 <c-child key={con.id} contact={con} component-type={message}></c-child>
-              </template>
+        <div class="slds-var-m-around_medium">
+            <lightning-button-group>
+                <lightning-button label="Show Child Component" onclick={handleShow}></lightning-button>
+                <lightning-button label="Hide Child Component" onclick={handleHide}></lightning-button>
+            </lightning-button-group>
         </div>
-      <!-- <div class="slds-var-m-around_medium">
-              <span>Advanced Calulator Goes Here</span><br/>
-              <c-advcalculator></c-advcalculator>
-        </div> -->
+         <div lwc:if={isShown} class="slds-var-m-around_medium">
+              <span>Child Component goes here</span><br/>
+                <template lwc:if={contacts}>
+                    <template for:each={contacts} for:item="con">
+                        <c-child key={con.id} contact={con} component-type={message}></c-child>
+                    </template>
+                </template> 
+            </div>
     </lightning-card>
 </template>

@@ -1,0 +1,17 @@
+<template>
+    <lightning-card title="Slot Example #2" icon-name="standard:contact">
+        <c-cmodal-component>
+            <!-- Target the "title" named slot -->
+            <h1 slot="title">Delete Account Confirmation</h1>
+
+            <!-- Unnamed/Default slot content (no slot attribute needed) -->
+            <p>Are you sure you want to delete this record? This action cannot be undone.</p>
+
+            <!-- Target the "footer" named slot -->
+            <div slot="footer">
+                <lightning-button label="Cancel"></lightning-button>
+                <lightning-button label="Confirm" variant="destructive"></lightning-button>
+            </div>
+        </c-cmodal-component>
+    </lightning-card>
+</template>

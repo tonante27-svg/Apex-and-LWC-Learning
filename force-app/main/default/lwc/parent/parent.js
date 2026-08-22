@@ -4,6 +4,7 @@ export default class Parent extends LightningElement {
     message = 'Im from parent component';
     greetings = '';
     hasRendered = false;
+    isShown = true;
     contacts = [
         {
         "id": "101",
@@ -79,22 +80,22 @@ export default class Parent extends LightningElement {
         this.loadCss('Inside the Load CSS file.');
         this.loadExternal('Inside the Load  External file');
         this.greetings = `${Math.random()}`;
-        //throw new Error('Message is error in connectedCallBack');
     }
     renderedCallback(){
         if(!this.hasRendered){
             this.greetings = `${Math.random()}`;
             this.hasRendered = true;
         }
-        console.log('I\'m from parent compoennt renderedCallback');
+        console.log('I\'m from parent  renderedCallback');
     //** Can Access the child elements Here */ */    
     
     }
     errorCallback(error, stack){
-        console.log('I\'m from parent compoennt errorCallback');
+        console.log('I\'m from parent  errorCallback');
         console.error('The error occured while rendering the components',JSON.stringify(error));
         console.error('The complete stack for the error ',stack);
     }
+
     handleMessage(amessage){
        
         console.log(amessage);
@@ -109,4 +110,13 @@ export default class Parent extends LightningElement {
     loadExternal(amessage){
         console.log(amessage);
     }
+
+    handleShow(){
+        this.isShown = true;
+    }
+
+     handleHide(){
+        this.isShown = false;
+    }
+
 }
