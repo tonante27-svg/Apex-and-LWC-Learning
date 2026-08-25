@@ -1,0 +1,12 @@
+<template>
+    <lightning-card title="SimpleEventCatcher" icon-name="custom:custom9">
+
+        <div class="slds-var-p-horizontal_small">
+            <h1>Parent Component</h1>
+            {message}<br/>
+            {source}
+            <c-child-to-parent ondatachange={handleDataChange}></c-child-to-parent>
+        </div>
+        <div slot="footer">Card Footer</div>
+    </lightning-card>
+</template>

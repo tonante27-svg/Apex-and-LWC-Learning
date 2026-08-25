@@ -13,5 +13,12 @@
       "files": "*.{cmp,page,component}",
       "options": { "parser": "html" }
     }
-  ]
+  ],
+  "Console Log": {
+        "prefix": "cl",
+        "body": [
+            "console.log($1);"
+        ],
+        "description": "Insert console.log()"
+    }
 }
