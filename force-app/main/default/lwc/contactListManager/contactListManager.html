@@ -1,12 +1,15 @@
 <template>
-    <div onselect={handlerSelectedContact}>
-        <c-contact-list  lwc:ref="child"></c-contact-list>
-    </div>
-    <div class="slds-var-m-around_medium">
-        <lightning-button 
-          variant="brand"
-          label="Call Child" 
-          onclick={handleClick} 
-        ></lightning-button>
-    </div>
+  <div onselect={handlerSelectedContact}>
+    <c-contact-list lwc:ref="child"></c-contact-list>
+  </div>
+  <div class="slds-var-m-around_medium">
+    <span class="heading">This will act as a heading</span><br />
+    <span class="badge-info">This is a badge</span><br />
+    <lightning-button
+      class="btn btn-primary"
+      variant="brand"
+      label="Call Child"
+      onclick={handleClick}
+    ></lightning-button>
+  </div>
 </template>
