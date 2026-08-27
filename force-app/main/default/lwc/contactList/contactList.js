@@ -1,0 +1,41 @@
+import { LightningElement,api } from 'lwc';
+
+export default class ContactList extends LightningElement {
+    contacts = [];
+    fname;
+    lname;
+    email;
+    pic;
+
+    connectedCallback(){
+        this.contacts = [
+            {
+                "FirstName": "Amy",
+                "LastName": "Taylor",
+                "Titile":"VP of Engineering",
+                "Email": "amy@demo.net",
+                "Phone":"4152568563",
+                "Picture__c": "https://s3-us-west-2.amazonaws.com/dev-or-devrl-s3-bucket/sample-apps/people/amy_taylor.jpg"
+            },
+             {
+                "FirstName": "Michael",
+                "LastName": "Jones",
+                "Titile":"VP of Sales",
+                "Email": "michael@demo.net",
+                "Phone":"4158526633",
+                "Picture__c": "https://s3-us-west-2.amazonaws.com/dev-or-devrl-s3-bucket/sample-apps/people/michael_jones.jpg"
+            },
+
+        ];
+    }
+    handleSelectedContact(event){
+       
+        console.log(event.detail);
+        
+    }
+
+    @api
+    handleSum(a,b){
+        return Number(b) + Number(a);
+    }
+}

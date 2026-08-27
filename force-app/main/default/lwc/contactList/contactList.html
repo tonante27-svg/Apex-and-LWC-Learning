@@ -1,0 +1,23 @@
+<template>
+  <template lwc:if={contacts}>
+    <div class="slds-var-m-around_medium">
+      <lightning-formatted-rich-text
+        value="<b>Contact List</b>"
+      ></lightning-formatted-rich-text>
+      <!--Use  Bubble Up instead so that we won;t have to use too many events a below-->
+    </div>
+    <div oncontactselected={handleSelectedContact}>
+      <template for:each={contacts} for:item="contact" for:index="index">
+        <!--DOM BOUNDARY -->
+        <c-contact-list-item
+          key={contact.Email}
+          contact={contact}
+        ></c-contact-list-item>
+      </template>
+    </div>
+
+    <div class="slds-var-m-around_medium">
+      <slot>Card Footer</slot>
+    </div>
+  </template>
+</template>
