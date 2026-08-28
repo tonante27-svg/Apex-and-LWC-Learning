@@ -1,0 +1,36 @@
+<template>
+  <lightning-card
+    title="LDS Load"
+    variant="Narrow"
+    icon-name="standard:account"
+  >
+    <!-- WITH LAYOUT TYPE-->
+    <div class="slds-var-p-horizontal_medium">
+      <lightning-record-form
+        columns="2"
+        layout-type="Compact"
+        object-api-name={objectApiName}
+        record-id={recordId}
+        fields={fieldList}
+        mode="readonly"
+      ></lightning-record-form>
+    </div>
+
+    <!-- WITH CUSTOM FIELD LIST -->
+    <hr />
+    <span
+      >lightning-record-form example using fields attribute isntead of
+      layout-type</span
+    >
+    <hr />
+    <div class="slds-var-p-horizontal_medium">
+      <lightning-record-form
+        columns="2"
+        object-api-name={objectApiName}
+        record-id={recordId}
+        fields={fieldList}
+        mode="readonly"
+      ></lightning-record-form>
+    </div>
+  </lightning-card>
+</template>

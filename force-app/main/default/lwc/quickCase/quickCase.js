@@ -1,4 +1,4 @@
-import { LightningElement, wire } from "lwc";
+import { LightningElement, wire, api } from "lwc";
 import { getObjectInfo, getPicklistValues } from "lightning/uiObjectInfoApi";
 import CASE_OBJECT from "@salesforce/schema/Case";
 import STATUS_FIELD from "@salesforce/schema/Case.Status";
@@ -10,7 +10,8 @@ import NAME_FIELD from "@salesforce/schema/Contact.Name";
 export default class QuickCase extends LightningElement {
   statusOptions = [];
   priorityOptions = [];
-
+  @api recordId;
+  @api objectApiName;
   @wire(getObjectInfo, { objectApiName: CASE_OBJECT })
   objectInfo;
 
