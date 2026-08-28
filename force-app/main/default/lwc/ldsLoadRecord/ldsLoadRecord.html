@@ -1,6 +1,6 @@
 <template>
   <lightning-card
-    title="LDS Load"
+    title="LDS Load Record"
     variant="Narrow"
     icon-name="standard:account"
   >
@@ -12,17 +12,20 @@
         object-api-name={objectApiName}
         record-id={recordId}
         fields={fieldList}
-        mode="readonly"
+        mode="edit"
+        onsuccess={handleSuccess}
+        onerror={handleError}
       ></lightning-record-form>
     </div>
 
     <!-- WITH CUSTOM FIELD LIST -->
     <hr />
     <span
-      >lightning-record-form example using fields attribute isntead of
+      >lightning-record-View form example using fields attribute isntead of
       layout-type</span
     >
     <hr />
+    <!--
     <div class="slds-var-p-horizontal_medium">
       <lightning-record-form
         columns="2"
@@ -31,6 +34,34 @@
         fields={fieldList}
         mode="readonly"
       ></lightning-record-form>
-    </div>
+    </div>-->
+    <!-- <lightning-record-view-form
+      density="default"
+      layout-type="Compact"
+      object-api-name={objectApiName}
+      record-id={recordId}
+      fields={fieldList}
+    >
+      <div class="slds-box">
+        <lightning-output-field
+          field-name="Name"
+          variant="standard"
+        ></lightning-output-field>
+        <lightning-output-field
+          field-name="Description"
+          variant="standard"
+        ></lightning-output-field>
+      </div>
+      <div class="slds-box">
+        <lightning-output-field
+          field-name="Rating"
+          variant="standard"
+        ></lightning-output-field>
+        <lightning-output-field
+          field-name="Industry"
+          variant="standard"
+        ></lightning-output-field>
+      </div>
+    </lightning-record-view-form>-->
   </lightning-card>
 </template>

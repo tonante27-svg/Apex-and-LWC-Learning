@@ -11,7 +11,8 @@ export default class QuickCase extends LightningElement {
   statusOptions = [];
   priorityOptions = [];
   @api recordId;
-  @api objectApiName;
+  // @api objectApiName;
+
   @wire(getObjectInfo, { objectApiName: CASE_OBJECT })
   objectInfo;
 
@@ -29,7 +30,7 @@ export default class QuickCase extends LightningElement {
     recordTypeId: "$objectInfo.data.defaultRecordTypeId",
     fieldApiName: PRIORITY_FIELD
   })
-  wiredPriorityicklist({ data }) {
+  wiredPriorityPicklist({ data }) {
     if (data) {
       this.priorityOptions = data.values;
     }

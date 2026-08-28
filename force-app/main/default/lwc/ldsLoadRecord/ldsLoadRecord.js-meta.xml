@@ -2,6 +2,8 @@
 <LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata">
     <apiVersion>65.0</apiVersion>
     <isExposed>true</isExposed>
+    <masterLabel>Using Generic Form to View a Record</masterLabel>
+    <description>Set mode=readOnly</description>
     <targets>
         <target>lightning__RecordPage</target>
         <target>lightning__HomePage</target>

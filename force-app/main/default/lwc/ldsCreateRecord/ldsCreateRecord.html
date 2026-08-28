@@ -1,0 +1,27 @@
+<template>
+  <lightning-card
+    title="LDS Create Record"
+    variant="Narrow"
+    icon-name="standard:account"
+  >
+    <!-- WITH LAYOUT TYPE-->
+    <div class="slds-var-p-horizontal_medium">
+      <lightning-record-form
+        lwc:ref="createform"
+        object-api-name="Account"
+        fields={fieldList}
+        columns="2"
+        mode="edit"
+        onsuccess={handleSuccess}
+        onerror={handleError}
+        onsubmit={handleSubmit}
+      >
+        <lightning-button
+          variant="brand"
+          label="Submit"
+          type="Submit"
+        ></lightning-button>
+      </lightning-record-form>
+    </div>
+  </lightning-card>
+</template>

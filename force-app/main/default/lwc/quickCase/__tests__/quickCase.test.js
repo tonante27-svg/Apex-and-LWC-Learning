@@ -14,7 +14,7 @@ describe("c-quick-case", () => {
     }
   });
 
-  it("verifies that all the components are  truthy", () => {
+  it("verifies that all the components are  truthy", async () => {
     // Arrange
     const element = createElement("c-quick-case", {
       is: QuickCase
@@ -23,15 +23,28 @@ describe("c-quick-case", () => {
     // Act
     document.body.appendChild(element);
 
+    //await flushPromises();
     // Query chart-bar component
-    const subjectEl = element.shadowRoot.querySelector(
-      'input[label="Subject"]'
+    const comboboxes =
+      element.shadowRoot.querySelectorAll("lightning-combobox");
+
+    const subjectEl = element.shadowRoot.querySelector("lightning-input");
+    const descriptionEl =
+      element.shadowRoot.querySelector("lightning-textarea");
+    const contactPickerEl = element.shadowRoot.querySelector(
+      "lightning-record-picker"
     );
-    const descriptionEl = element.shadowRoot.querySelector(
-      'input[label="Description"]'
-    );
-    await flushPromises();
+
+    const statusEl = comboboxes[0];
+
+    const priorityEl = comboboxes[1];
+
+    //Assert
     expect(subjectEl).toBeTruthy();
     expect(descriptionEl).toBeTruthy();
+    expect(contactPickerEl).toBeTruthy();
+    expect(statusEl).toBeTruthy();
+    expect(priorityEl).toBeTruthy();
+    expect(comboboxes).toHaveLength(2);
   });
 });
