@@ -1,0 +1,17 @@
+<template>
+  <lightning-card
+    title="A Single Product"
+    icon-name="standard:product2"
+    variant="base"
+  >
+    <div class="slds-var-m-around_medium">
+      <template if:true={product}>
+        <div>{product.Name} {product.ProductCode} {product.Family}</div>
+      </template>
+
+      <template if:false={product}>
+        <span class="slds-text-color_error">{error.body.message}</span>
+      </template>
+    </div>
+  </lightning-card>
+</template>

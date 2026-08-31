@@ -1,0 +1,20 @@
+<template>
+  <lightning-card
+    title="Product List"
+    icon-name="standard:product2"
+    variant="base"
+  >
+    <div class="slds-var-m-around_medium">
+      <template if:true={products.error}>
+        <span style="color: red"> {products.error.body.message} </span>
+        <p class="slds-text-color_error">Unable to load products.</p>
+      </template>
+      <template for:each={products} for:item="prod" for:index="index">
+        <div key={prod.Id}>
+          {index}. {prod.Name},{prod.ProductCode}
+          <hr />
+        </div>
+      </template>
+    </div>
+  </lightning-card>
+</template>

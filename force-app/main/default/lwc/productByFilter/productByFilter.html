@@ -1,0 +1,20 @@
+<template>
+  <lightning-card
+    title="Product Filtered List"
+    icon-name="standard:product2"
+    variant="base"
+  >
+    <div class="slds-var-m-around_medium">
+      <template for:each={filteredProducts} for:item="prod" for:index="index">
+        <div key={prod.Id}>
+          {index}. {prod.Name},{prod.ProductCode},{prod.Family}
+          <hr />
+        </div>
+      </template>
+      <template if:true={filteredProducts.error}>
+        <span style="color: red"> {filteredProducts.error.body.message} </span>
+        <p class="slds-text-color_error">Unable to load products.</p>
+      </template>
+    </div>
+  </lightning-card>
+</template>
