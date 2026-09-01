@@ -1,0 +1,59 @@
+<template>
+  <lightning-card
+    title="Get Account Records UiRecodAPI "
+    icon-name="standard:account"
+  >
+    <div class="slds-var-p-around_medium">
+      <lightning-input
+        type="text"
+        label="Name"
+        data-id="Name"
+        onchange={handleInput}
+      ></lightning-input>
+      <lightning-input
+        type="text"
+        label="Annual Revenue"
+        data-id="AnnualRevenue"
+        onchange={handleInput}
+      ></lightning-input>
+      <lightning-combobox
+        label="Industry"
+        data-id="Industry"
+        value={fields.Industry}
+        options={industryOptions}
+        onchange={handleInput}
+      ></lightning-combobox>
+      <lightning-combobox
+        label="Rating"
+        data-id="Rating"
+        value={fields.Rating}
+        options={ratingOptions}
+        onchange={handleInput}
+      ></lightning-combobox>
+      <lightning-combobox
+        label="Type"
+        data-id="Type"
+        value={fields.Type}
+        options={typeOptions}
+        onchange={handleInput}
+      ></lightning-combobox>
+      <lightning-textarea
+        label="Description"
+        data-id="Description"
+        onchange={handleInput}
+      ></lightning-textarea>
+      <div class="slds-var-p-around_medium">
+        <lightning-button
+          variant="brand"
+          label="Save"
+          onclick={handleCreateRecord}
+        ></lightning-button>
+        <lightning-button
+          variant="destructive"
+          label="Delete"
+          onclick={handleDeleteRecord}
+        ></lightning-button>
+      </div>
+    </div>
+  </lightning-card>
+</template>

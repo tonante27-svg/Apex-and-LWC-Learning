@@ -11,26 +11,32 @@
         variant="standard"
       ></lightning-textarea>
       <!--Contact Name-->
-      <lightning-record-picker
-        lwc:ref="recordPicker"
-        label="Contact Name"
-        placeholder="Search Contacts"
-        object-api-name="Contact"
-        onready={handleOnready}
-      ></lightning-record-picker>
 
       <lightning-combobox
         name="Status"
         label="Status"
         placeholder="Select Status"
+        value={fields.Status}
         options={statusOptions}
+        onchange={handleInput}
       ></lightning-combobox>
 
       <lightning-combobox
         name="Priority"
         label="Priority"
         placeholder="Select Priority"
+        value={fields.Priority}
         options={priorityOptions}
+        onchange={handleInput}
+      ></lightning-combobox>
+
+      <lightning-combobox
+        name="Type"
+        label="Type"
+        placeholder="Select Type"
+        value={fields.Type}
+        options={typeOptions}
+        onchange={handleInput}
       ></lightning-combobox>
     </div>
   </lightning-card>

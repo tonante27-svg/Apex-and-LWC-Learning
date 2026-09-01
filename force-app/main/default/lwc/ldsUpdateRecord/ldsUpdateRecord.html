@@ -1,0 +1,25 @@
+<template>
+  <lightning-card
+    title="Using UiRecordAPI For Updates"
+    icon-name="standard:acocunt"
+  >
+    <div class="slds-var-p-around_medium">
+      <lightning-textarea
+        max-length="1000"
+        name="Description"
+        label="Description"
+        placeholder="type here..."
+        onchange={handleInputChange}
+        variant="standard"
+      ></lightning-textarea>
+    </div>
+
+    <div class="slds-var-p-around_medium">
+      <lightning-button
+        variant="brand"
+        label="Button Label"
+        onclick={handleUpdate}
+      ></lightning-button>
+    </div>
+  </lightning-card>
+</template>
