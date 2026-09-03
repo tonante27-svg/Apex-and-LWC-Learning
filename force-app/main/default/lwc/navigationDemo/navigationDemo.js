@@ -12,4 +12,14 @@ export default class NavigationDemo extends NavigationMixin(LightningElement) {
       }
     });
   }
+
+  async handleNavigateToNewContact() {
+    await this[NavigationMixin.Navigate]({
+      type: "standard__objectPage",
+      attributes: {
+        objectApiName: "Contact",
+        actionName: "new"
+      }
+    });
+  }
 }
