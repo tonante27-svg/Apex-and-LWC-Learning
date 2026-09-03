@@ -1,0 +1,52 @@
+<template>
+  <c-search-component
+    object-api-name={objectApiName}
+    onsearch={handleSearch}
+  ></c-search-component>
+
+  <template lwc:if={error}>
+    <p class="slds-text-color_error">Error occurred while searching records.</p>
+  </template>
+
+  <template lwc:if={selectedRecord}>
+    <div class="slds-box slds-theme_shade slds-var-m-top_small">
+      <p><strong>Selected:</strong> {selectedRecord.Name}</p>
+      <lightning-button
+        label="Clear"
+        variant="base"
+        onclick={handleClear}
+      ></lightning-button>
+    </div>
+    <div class="slds-var-m-top_small">
+      <input
+        class="slds-input slds-combobox__input slds-combobox__input-value"
+        id="combobox-id-5"
+        aria-controls="listbox-id-5"
+        autocomplete="off"
+        role="textbox"
+        type="text"
+        placeholder="Select an Option"
+        readonly=""
+        value={selectedRecord.Name}
+        disabled
+        aria-label="Selected record name"
+      />
+    </div>
+  </template>
+
+  <template lwc:if={results.length}>
+    <div class="slds-var-m-top_small">
+      <template for:each={results} for:item="record">
+        <div
+          key={record.Id}
+          class="slds-box slds-box_xx-small slds-var-m-bottom_xx-small slds-var-p-around_x-small .slds-is-clickable"
+          onclick={handleSelect}
+          data-id={record.Id}
+          data-name={record.Name}
+        >
+          <p>{record.Name}</p>
+        </div>
+      </template>
+    </div>
+  </template>
+</template>

@@ -33,7 +33,7 @@ export default class LwcRefreshApex extends LightningElement {
       console.log("Error", result.error);
     }
   }
-
+  //handleSelection selects the checkbox on the record that needs to be deleted by deleteRecord ()
   handleSelection(event) {
     if (event.detail.selectedRows.length > 0) {
       this.selectRecord = event.detail.selectedRows[0].Id;

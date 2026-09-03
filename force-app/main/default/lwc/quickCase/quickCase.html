@@ -2,16 +2,41 @@
   <lightning-card variant="Narrow" title="Quick Case" icon-name="standard:case">
     <div class="slds-var-p-horizontal_medium">
       <!--Subject-->
-      <lightning-input type="text" label="Subject" name="Subject">
+      <lightning-input
+        type="text"
+        label="Subject"
+        value={fields.Subject}
+        name="Subject"
+        onchange={handleInput}
+      >
       </lightning-input>
       <lightning-textarea
         max-length="1000"
         name="Description"
         label="Description"
-        variant="standard"
+        value={fields.Description}
+        onchange={handleInput}
       ></lightning-textarea>
+      <!--Account Name-->
+      <template if:true={isAccount}>
+        <c-custom-lookup
+          name="AccountId"
+          label="Account Name"
+          placeholder="Select Account"
+          value={fields.AccountId}
+          onrecordselect={handleAccountSelect}
+        ></c-custom-lookup>
+      </template>
       <!--Contact Name-->
-
+      <template if:true={isContact}>
+        <c-custom-lookup
+          name="ContactId"
+          label="Contact Name"
+          placeholder="Select Contact"
+          value={fields.ContactId}
+          onrecordselect={handleContactSelect}
+        ></c-custom-lookup>
+      </template>
       <lightning-combobox
         name="Status"
         label="Status"
@@ -31,6 +56,15 @@
       ></lightning-combobox>
 
       <lightning-combobox
+        name="Origin"
+        label="Origin"
+        placeholder="Select Origin"
+        value={fields.Origin}
+        options={originOptions}
+        onchange={handleInput}
+      ></lightning-combobox>
+
+      <lightning-combobox
         name="Type"
         label="Type"
         placeholder="Select Type"
@@ -38,6 +72,14 @@
         options={typeOptions}
         onchange={handleInput}
       ></lightning-combobox>
+    </div>
+    <br />
+    <div class="slds-var-p-horizontal_medium">
+      <lightning-button
+        variant="brand"
+        label="Create"
+        onclick={handleCreateCase}
+      ></lightning-button>
     </div>
   </lightning-card>
 </template>
