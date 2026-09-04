@@ -1,6 +1,8 @@
 import { LightningElement, wire } from "lwc";
 import { NavigationMixin, CurrentPageReference } from "lightning/navigation";
-
+// This example isgood for when an LWCin one UI page needs to navigate to another LWC in a different UI page and pass parameters to it.
+//  The receiving LWC can then access those parameters using the CurrentPageReference wire adapter.
+// Usage: Experience Cloud is a good use case for this example, where one LWC in a page needs to navigate to another LWC in a different page and pass parameters to it. The receiving LWC can then access those parameters using the CurrentPageReference wire adapter.
 export default class Example extends NavigationMixin(LightningElement) {
   @wire(CurrentPageReference)
   pageRef;
