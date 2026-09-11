@@ -1,0 +1,20 @@
+<template>
+  <lightning-card
+    title="Standard DataTable Demo"
+    icon-name="standard:contact"
+    variant="base"
+  >
+    <div class="slds-var-p-around_large">
+      <lightning-datatable
+        key-field="Id"
+        data={contactData}
+        show-row-number-column=""
+        hide-checkbox-column=""
+        columns={columnList}
+      ></lightning-datatable>
+    </div>
+    <div slot="footer">
+      <lightning-badge label="Datatable"></lightning-badge>
+    </div>
+  </lightning-card>
+</template>

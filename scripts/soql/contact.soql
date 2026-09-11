@@ -1,0 +1,3 @@
+ SELECT Id, Name, Phone, Title, Email, AccountId, Account.Name
+        FROM Contact
+        LIMIT 10
