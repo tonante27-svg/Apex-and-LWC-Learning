@@ -1,6 +1,14 @@
 import { LightningElement, wire } from "lwc";
+import { NavigationMixin } from "lightning/navigation";
+import { refreshApex } from "@salesforce/apex";
 import getContactList from "@salesforce/apex/DataTableController.getContactList";
-// This uses LwcApplication.app -  aura: https://agility-drive-9388-dev-ed.scratch.lightning.force.com/c/LwcApplication.app
+import Toast from "lightning/toast";
+import { deleteRecord } from "lightning/uiRecordApi";
+//define row actions
+const actions = [
+  { label: "Show Details", name: "view" },
+  { label: "Delete", name: "delete" }
+];
 const columns = [
   {
     label: "Name",
@@ -41,17 +49,30 @@ const columns = [
       iconPosition: "right",
       iconAlternativeText: "Account Icon"
     }
+  },
+  {
+    type: "action",
+    typeAttributes: {
+      rowActions: actions,
+      menuAlignment: "right"
+    }
   }
 ];
 
-export default class DatatableComponent extends LightningElement {
+export default class DatatableComponent extends NavigationMixin(
+  LightningElement
+) {
   contactData;
   columnList = columns;
   error;
+  showLoadingSpinner = false;
+  refreshTable;
+
   @wire(getContactList)
-  wireData(data, error) {
+  wireData({ data, error }) {
     if (data) {
       let parsedData = JSON.parse(JSON.stringify(data));
+      this.refreshTable = parsedData;
       let baseUrl = window.location.origin + "/";
       parsedData.forEach((contact) => {
         contact.recordUrl = baseUrl + contact.Id;
@@ -68,5 +89,70 @@ export default class DatatableComponent extends LightningElement {
       this.error = error;
       this.contactData = undefined;
     }
+  }
+
+  handleRowLevelAction(event) {
+    const row = event?.detail?.row;
+    const rowId = row?.Id;
+    const rowActionName = event?.detail?.action?.name;
+
+    if (!rowId || !rowActionName) {
+      return;
+    }
+    console.log(rowActionName);
+    switch (rowActionName) {
+      case "view":
+        console.log(rowId);
+        try {
+          this[NavigationMixin.Navigate]({
+            type: "standard__recordPage",
+            attributes: {
+              recordId: rowId,
+              objectApiName: "Contact",
+              actionName: "view"
+            }
+          });
+        } catch (e) {
+          // Fallback in case Lightning navigation is blocked in the current context
+          window.location.href = `/lightning/r/Contact/${rowId}/view`;
+        }
+        break;
+
+      case "delete":
+        this.showLoadingSpinner = true;
+        deleteRecord(rowId)
+          .then(() => {
+            this.showLoadingSpinner = false;
+            this.handleToast(
+              "Success",
+              "Contact deleted successfully",
+              "success"
+            );
+            return refreshApex(this.refreshTable);
+          })
+          .catch((error) => {
+            this.showLoadingSpinner = false;
+            this.handleToast(
+              "Error while deleting record",
+              error.body?.message || error.message || "Unknown error",
+              "error"
+            );
+          });
+        break;
+      default:
+        console.warn(`Unhandled row action: ${rowActionName}`);
+        break;
+    }
+  }
+
+  handleToast(t_title, t_message, t_variant) {
+    Toast.show(
+      {
+        label: t_title,
+        message: t_message,
+        variant: t_variant
+      },
+      this
+    );
   }
 }
