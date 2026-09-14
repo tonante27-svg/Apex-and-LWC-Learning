@@ -1,40 +1,52 @@
-//Typed Sobject
-// Compiler knows the existence of this account object
-Account acc = new Account();
-acc.Name = 'Test Account';
-acc.Industry = 'Banking';
-system.debug('account name is ==' + acc.Name);
+Integer a = 12, b = 5;
+system.debug('Complex Mulitplcation = ' + (a + b) * (a - b));
 
-// Generic sObject - compiler has no idea what that object is @ runtime:
-sObject mysObject = new Account();
-mysObject.put('Name', 'Test Account 2');
-mysObject.put('Industry', 'Agriculture');
-system.debug('Account name is ==' + mysObject.get('Name'));
+Integer score = 65;
+String something = score > 40 ? 'Pass' : 'Fail';
+system.debug(something);
 
-mysObject = new Contact();
-mysObject.put('FirstName', 'Test');
-mysObject.put('LastName', 'Contact');
-insert (Contact) mysObject;
-system.debug('First name is ==' + mysObject.get('FirstName'));
+String onevar = 'Salesforce';
+String twovar = 'Apex';
+system.debug(onevar + twovar);
 
-//Operators
-Integer a = 10;
-Integer b = 5;
-Integer c = a + b;
-a = 10; // assignment operator
-a += 5; // 10 + 5
-a -= 3; // 15 - 3
-a *= 2; // 24
-a /= 4; // 6
-//a = 10, b = 20;
+Integer num = 18;
+String results = Math.mod(num, 2) == 0 ? 'Even ' : 'Odd';
+system.debug(results);
 
-//Logical Opertor
+Integer age = 20;
+results = age > 18 ? 'Adult' : 'Minor';
+System.debug(results);
 
-String Stage = 'Prospecting';
-Decimal amount = 75000;
-Boolean isHighValue = true;
-if (stage == 'Prospecting' && amount > 50000) {
-  System.debug('This is a high value opportunity');
-}
-String result = (amount >= 50000) ? 'HIgh' : 'Low';
-System.debug(result);
+Boolean isActive = false;
+results = isActive ? 'ActiveUser' : 'Inactive User';
+System.debug(results);
+
+String name = 'Delihi';
+String who = name != null ? name : 'Unknown';
+
+//Safe Navigator - checks ahead to see if the field has been created.
+// Account acct;
+// String acctName = acct?.Name;
+// system.debug(acctName);
+//Null Coalescing Operator
+Account acct = new Account();
+acct.Name = 'First Account';
+String acctName = acct?.Name ?? 'Junk';
+system.debug(acctName);
+
+score = 9;
+Integer realScore = score ?? 0;
+system.debug(realScore);
+
+Integer count = 10;
+Integer realCount = count ?? 0;
+system.debug(realCount);
+//Collections - List
+//add
+List<String> fruits = new List<String>();
+fruits.add('Apple');
+system.debug(fruits);
+
+//add(index,value)
+fruits.add(0, 'Mango');
+system.debug(fruits);
