@@ -50,3 +50,63 @@ system.debug(fruits);
 //add(index,value)
 fruits.add(0, 'Mango');
 system.debug(fruits);
+//Set<String>
+
+Set<String> students = new Set<String>();
+students.add('Amit');
+students.add('Amit');
+students.add('Rohan');
+system.debug(students);
+
+//addAll
+list<String> newStudents = new List<String>{ 'Mohit', 'Mia', 'Satish' };
+students.addAll(newStudents);
+
+system.debug(students);
+//Contains()
+boolean hasAmit = students.contains('Amit');
+system.debug(hasAmit);
+
+//Remove
+students.remove('Mia');
+system.debug('No Mia. She is gone: ' + students);
+
+//Size()
+
+Integer totalStudents = students.size();
+System.debug(totalStudents);
+
+//Maps: roll # with student name
+Map<Integer, String> studentMap = new Map<Integer, String>();
+studentMap.put(101, 'Amit');
+studentMap.put(102, 'Rohan');
+system.debug(studentMap);
+studentMap.put(101, 'Mohit');
+system.debug(studentMap);
+//Get() takes key
+String studentName = studentMap.get(101);
+system.debug(studentName);
+//Remove
+studentMap.remove(101);
+system.debug('=== remove map ==' + studentMap);
+//Clear
+studentMap.clear();
+system.debug('=== clear map ==' + studentMap);
+//Contains
+studentMap.put(103, 'Wooba');
+system.debug(studentMap);
+system.debug(studentMap.containsKey(103));
+//isEMpty
+system.debug('=== IsEmpty ===' + studentMap.isEmpty());
+//keySet()
+system.debug('=== keySet ===' + studentMap.keySet());
+//values()
+studentMap.put(104, 'Abe');
+List<String> allStudents = studentMap.Values();
+system.debug('=== Values Map ===' + allStudents);
+//size
+system.debug('=== Size ===' + studentMap.size());
+// Clone
+Map<Integer, String> clonedMap = studentMap.clone();
+system.debug('=== Clone ===' + clonedMap.size());
+system.debug('=== Clone ===' + clonedMap);

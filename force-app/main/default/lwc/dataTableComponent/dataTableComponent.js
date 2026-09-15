@@ -1,9 +1,9 @@
-import { LightningElement, wire } from "lwc";
+import { LightningElement, wire, track } from "lwc";
 import { NavigationMixin } from "lightning/navigation";
 import { refreshApex } from "@salesforce/apex";
 import getContactList from "@salesforce/apex/DataTableController.getContactList";
 import Toast from "lightning/toast";
-import { deleteRecord } from "lightning/uiRecordApi";
+import { deleteRecord, updateRecord } from "lightning/uiRecordApi";
 //define row actions
 const actions = [
   { label: "Show Details", name: "view" },
@@ -28,9 +28,21 @@ const columns = [
       iconAlternativeText: "Contact Icon"
     }
   },
-  { label: "Phone", fieldName: "Phone", type: "phone" },
-  { label: "Title", fieldName: "Title", type: "text" },
-  { label: "Email", fieldName: "Email", type: "email" },
+  {
+    label: "Phone",
+    fieldName: "Phone",
+    type: "phone",
+    sortable: true,
+    editable: true
+  },
+  {
+    label: "Title",
+    fieldName: "Title",
+    type: "text",
+    sortable: true,
+    editable: true
+  },
+  { label: "Email", fieldName: "Email", type: "email", sortable: true },
   { label: "AccountId", fieldName: "AccountId", type: "text" },
   {
     label: "Account Name",
@@ -58,7 +70,7 @@ const columns = [
     }
   }
 ];
-
+//============== Class
 export default class DatatableComponent extends NavigationMixin(
   LightningElement
 ) {
@@ -67,11 +79,18 @@ export default class DatatableComponent extends NavigationMixin(
   error;
   showLoadingSpinner = false;
   refreshTable;
+  /* Attributes for Data Sorting */
+  selectedRows = [];
+  sortBy = "Phone";
+  sortDirection = "asc";
+  draftValues; // List of all fields which have been modified
+  refreshApexData;
 
   @wire(getContactList)
-  wireData({ data, error }) {
-    if (data) {
-      let parsedData = JSON.parse(JSON.stringify(data));
+  wireData(result) {
+    this.refreshApexData = result;
+    if (result.data) {
+      let parsedData = JSON.parse(JSON.stringify(result.data));
       this.refreshTable = parsedData;
       let baseUrl = window.location.origin + "/";
       parsedData.forEach((contact) => {
@@ -85,8 +104,8 @@ export default class DatatableComponent extends NavigationMixin(
       });
       this.error = undefined;
       this.contactData = parsedData;
-    } else if (error) {
-      this.error = error;
+    } else if (result.error) {
+      this.error = result.error;
       this.contactData = undefined;
     }
   }
@@ -145,6 +164,50 @@ export default class DatatableComponent extends NavigationMixin(
     }
   }
 
+  handleSortData(event) {
+    this.sortBy = event.detail.fieldName;
+    this.sortDirection = event.detail.sortDirection;
+    this.sortData(event.detail.fieldName, event.detail.sortDirection);
+  }
+  sortData(fieldName, direction) {
+    const parseData = [...this.contactData];
+    const isReverse = direction === "asc" ? 1 : -1;
+
+    parseData.sort((a, b) => {
+      const x = (a[fieldName] ?? "").toString().toLowerCase();
+      const y = (b[fieldName] ?? "").toString().toLowerCase();
+
+      if (x < y) return -1 * isReverse;
+      if (x > y) return 1 * isReverse;
+      return 0;
+    });
+
+    this.contactData = parseData;
+  }
+
+  handleSave(event) {
+    this.draftValues = event.detail.draftValues;
+    const recordInputs = event.detail.draftValues.slice().map((draft) => {
+      console.log("this.draftValues \n", this.draftValues);
+      const fields = Object.assign({}, draft);
+      return { fields };
+    });
+    window.console.log(JSON.stringify(event.detail.draftValues));
+    window.console.log(" recordInputs \n", recordInputs);
+    const promises = recordInputs.map((recordInput) =>
+      updateRecord(recordInput)
+    );
+    window.console.log(" promises \n", promises);
+    Promise.all(promises)
+      .then((accounts) => {
+        this.handleToast("Success", "Acocunt Records updated", "successs");
+        this.draftValues = [];
+        return refreshApex(this.refreshApexData);
+      })
+      .catch((error) => {
+        console.log("Error occured \n ", error);
+      });
+  }
   handleToast(t_title, t_message, t_variant) {
     Toast.show(
       {
