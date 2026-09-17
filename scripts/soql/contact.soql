@@ -1,3 +1,2 @@
- SELECT Id, Name, Phone, Title, Email, AccountId, Account.Name
-        FROM Contact
-        LIMIT 10
+ SELECT Id, LastName FROM Contact
+      WHERE accountId = '0019H00000NBJ0aQAH'
