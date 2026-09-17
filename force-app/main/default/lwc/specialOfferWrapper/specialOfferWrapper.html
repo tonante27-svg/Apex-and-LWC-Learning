@@ -1,0 +1,29 @@
+<template>
+  <div class="slds-var-p-around_medium">
+    <lightning-card
+      icon-name="standard:contact"
+      title="Contacts"
+      variant="base"
+    >
+      <div>{contactList}</div>
+    </lightning-card>
+  </div>
+  <div class="slds-var-p-around_medium">
+    <lightning-card
+      icon-name="standard:opportunity"
+      title="Opportunities"
+      variant="base"
+    >
+      <template
+        for:each={opportunities}
+        for:item="opportunity"
+        for:index="index"
+      >
+        <div key={opportunity.Id}>{opportunity.Name}</div>
+      </template>
+    </lightning-card>
+  </div>
+  <div class="slds-var-p-around_medium">
+    <p>Special Offer: {offer}</p>
+  </div>
+</template>
