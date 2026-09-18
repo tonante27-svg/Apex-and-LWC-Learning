@@ -1,33 +1,38 @@
+// ...existing code...
 import { LightningElement } from "lwc";
 import CHART_JS from "@salesforce/resourceUrl/ChartJS";
-import { loadStyle, loadScript } from "lightning/platformResourceLoader";
+import { loadScript } from "lightning/platformResourceLoader";
+
 export default class ChartJs extends LightningElement {
   chartInitialized = false;
+  chartJsPromise;
 
   renderedCallback() {
-    if (this.chartInitialized) {
-      return;
-    }
+    if (this.chartInitialized) return;
 
-    this.chartInitialized = true;
-    this.loadAndInitializeChart();
-  }
-  //Kickstarter to call your initialChart() method to draw the desired chart.
-  async loadAndInitializeChart() {
-    try {
-      // You can await Promise.all directly
-      await Promise.all([loadScript(this, CHART_JS)]);
+    if (!this.chartJsPromise) {
+      // If your static resource is a zip containing chart.umd.min.js at root use:
+      const url = CHART_JS.endsWith(".js")
+        ? CHART_JS
+        : CHART_JS + "/chart.umd.min.js";
 
-      this.initializeChart();
-    } catch (error) {
-      console.error(error);
+      this.chartJsPromise = loadScript(this, url)
+        .then(() => {
+          this.initializeChart();
+        })
+        .catch((error) => {
+          console.error("Error loading Chart.js", error);
+        });
     }
   }
 
   initializeChart() {
-    console.log("initializeChart called");
-    console.log("chart ref:", this.refs.chart);
-    const ctx = this.refs.myChart;
+    const canvas = this.template.querySelector("canvas");
+    if (!canvas) {
+      console.error("Canvas element not found");
+      return;
+    }
+    const ctx = canvas.getContext("2d");
 
     this.chart = new window.Chart(ctx, {
       type: "bar",
@@ -43,11 +48,12 @@ export default class ChartJs extends LightningElement {
       },
       options: {
         scales: {
-          y: {
-            beginAtZero: true
-          }
+          y: { beginAtZero: true }
         }
       }
     });
+
+    this.chartInitialized = true;
   }
 }
+// ...existing code...

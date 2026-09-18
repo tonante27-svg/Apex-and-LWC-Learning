@@ -21,4 +21,26 @@ public with sharing class DataTableController {
     }
     return contactList;
   }
+  @AuraEnabled(cacheable=true)
+  public static List<Account> getAccountList() {
+    List<Account> accountList = new List<Account>();
+    try {
+      accountList = [
+        SELECT
+          Id,
+          Name,
+          Description,
+          ShippingStreet,
+          ShippingCity,
+          ShippingPostalCode,
+          ShippingCountry,
+          ShippingState
+        FROM Account
+        LIMIT 10
+      ];
+    } catch (Exception e) {
+      throw new AuraHandledException(e.getMessage());
+    }
+    return accountList;
+  }
 }
