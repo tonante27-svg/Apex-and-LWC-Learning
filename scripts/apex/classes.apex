@@ -78,7 +78,9 @@
 // Decimal totalCartValue = currOrder.calculateAmount(1000);
 // system.debug('TOTAL CAR VALUE ===>' + totalCartValue);
 
-SpecialDiscountCalculator sdc = new SpecialDiscountCalculator();
-system.debug(
-  '== Total Discounted stuff ===> ' + sdc.SpecialDiscountCalculatorMethod(2000)
-);
+// SpecialDiscountCalculator sdc = new SpecialDiscountCalculator();
+// system.debug(
+//   '== Total Discounted stuff ===> ' + sdc.SpecialDiscountCalculatorMethod(2000)
+// );
+
+
