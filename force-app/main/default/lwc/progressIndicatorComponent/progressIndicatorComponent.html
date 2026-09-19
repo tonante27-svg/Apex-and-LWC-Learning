@@ -1,0 +1,30 @@
+<template>
+  <lightning-card
+    title="Progress Indicator"
+    icon-name="standard:account"
+    variant="Narrow"
+  >
+    <div class="slds-var-m-around_large">
+      <lightning-progress-indicator
+        current-step={currentStep}
+        type="path"
+        has-error="false"
+        variant="base"
+      >
+        <template if:true={stepValues} for:each={stepValues} for:item="step">
+          <lightning-progress-step
+            key={step.value}
+            value={step.value}
+            label={step.label}
+          ></lightning-progress-step>
+        </template>
+      </lightning-progress-indicator>
+    </div>
+    <div slot="footer">
+      <lightning-badge
+        label="Progress Indicator"
+        icon-name="utility:activity"
+      ></lightning-badge>
+    </div>
+  </lightning-card>
+</template>

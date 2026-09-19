@@ -1,0 +1,35 @@
+<template>
+  <lightning-card variant="Narrow">
+    <div class="slds-var-p-around_large">
+      <lightning-input
+        type="text"
+        variant="standard"
+        name="Name"
+        label="Opportunity Product LastName"
+        placeholder="type here ..."
+      ></lightning-input>
+      <lightning-input
+        type="number"
+        variant="standard"
+        name="Quantity"
+        label="Quantity"
+        placeholder="type here ..."
+      ></lightning-input>
+      <lightning-input
+        type="number"
+        variant="standard"
+        name="ProductCode"
+        label="Product Code"
+        placeholder="type here ..."
+      ></lightning-input>
+    </div>
+    <div class="slds-var-p-around_large">
+      <lightning-button
+        variant="brand"
+        label="Previous"
+        title="Previous"
+        onclick={handlePrevious}
+      ></lightning-button>
+    </div>
+  </lightning-card>
+</template>
