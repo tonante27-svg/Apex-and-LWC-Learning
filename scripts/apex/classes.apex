@@ -81,6 +81,23 @@
 // SpecialDiscountCalculator sdc = new SpecialDiscountCalculator();
 // system.debug(
 //   '== Total Discounted stuff ===> ' + sdc.SpecialDiscountCalculatorMethod(2000)
-// );
+// );ß
 
+// List<Library> libraries = new List<Library>();
+// for (Integer i = 0; i < 5; i++) {
+//   Library alib = new Library(Integer.valueOf(Math.random() * 100));
+//   libraries.add(alib);
+//   system.debug('== Current running total of Books for index == : ' + i);
+//   //Library.totalBooks();
+// }
+//BankAccount2 b2 Library.totalBooks();
 
+// BankAccount2 bs = new BankAccount2('66451ST09');
+// bs.showDetails();
+// PrimeCabBookingService pcbs = new PrimeCabBookingService();
+// pcbs.bookACab();
+// pcbs.calculateFare();
+
+VirtualClassDemo myDemo = new VirtualSubClassDemo(); // Dynami Dispatch
+myDemo.virtualClassDemoMethod();
+myDemo.nonVirtualMethod();
