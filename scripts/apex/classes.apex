@@ -92,12 +92,21 @@
 // }
 //BankAccount2 b2 Library.totalBooks();
 
+//ABSTRACT CLASS EXAMPLE
 // BankAccount2 bs = new BankAccount2('66451ST09');
 // bs.showDetails();
 // PrimeCabBookingService pcbs = new PrimeCabBookingService();
 // pcbs.bookACab();
 // pcbs.calculateFare();
 
-VirtualClassDemo myDemo = new VirtualSubClassDemo(); // Dynami Dispatch
-myDemo.virtualClassDemoMethod();
-myDemo.nonVirtualMethod();
+// VIRTUAL CLASSSES EXAMPLE
+// VirtualClassDemo myDemo = new VirtualSubClassDemo(); // Dynami Dispatch
+// myDemo.virtualClassDemoMethod();
+// myDemo.nonVirtualMethod();
+
+// INTERFACE
+Notification currNotification = new EmailNotification();
+currNotification.sendNotification(
+  'emiliosilva181@gmail.com',
+  'This is an Email Message Test using Interface called Notification.'
+);
