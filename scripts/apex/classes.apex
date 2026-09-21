@@ -105,8 +105,29 @@
 // myDemo.nonVirtualMethod();
 
 // INTERFACE
-Notification currNotification = new EmailNotification();
-currNotification.sendNotification(
-  'emiliosilva181@gmail.com',
-  'This is an Email Message Test using Interface called Notification.'
-);
+// Notification currNotification = new EmailNotification();
+// currNotification.sendNotification(
+//   'emiliosilva181@gmail.com',
+//   'This is an Email Message Test using Interface called Notification.'
+// );
+
+// PartnerAccountHandler myPartnerAH = new PartnerAccountHandler(
+//   '0017100000XXGe7AAH'
+// );
+// myPartnerAH.displayAccountDetails();
+// myPartnerAH.createInteractionLogin('Test Interaction Log to create task');
+
+// Polymorphism - static.
+// PaymentProcessingHandler pph = new PaymentProcessingHandler();
+// pph.processPayment('cash', 45.43, null, null, null);
+//Polymorphism - Dynamic
+// DynamicPaymentProcessingHandler currentTransaction = new CashPaymentHandler();
+// currentTransaction.makePayment();
+
+//Abstraction - Abstract CLasses
+CaseHandler currHandler = new EmailCaseHandler();
+Case passedCase = currHandler.createCase();
+currHandler.assignCase(passedCase);
+currHandler = new PhoneCaseHandler();
+passedCase = currHandler.createCase();
+currHandler.assignCase(passedCase);
