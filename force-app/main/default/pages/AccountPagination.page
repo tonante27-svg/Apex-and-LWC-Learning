@@ -1,0 +1,33 @@
+<apex:page  standardController="Account" recordSetVar="accounts" extensions="AccountPagination" tabStyle="Account" sidebar="false">
+<apex:slds/>
+<!-- End Default Content REMOVE THIS -->
+ <apex:form>
+    <apex:pageBlock title="Account Pagination" >
+        <apex:pageMessages />
+        <apex:pageBlockButtons location="top">
+            <apex:commandButton value="Select All" action="{!selectAll}"/>
+            <apex:commandButton value="UnSelect All" action="{!unSelectAll}"/>
+            <apex:commandButton value="Delete Selected" action="{!deleteSelected}"/>
+        </apex:pageBlockButtons>
+        <apex:pageBlockTable value="{!accounts}" var="acct">
+            <apex:column value="{!acct.isSelected__c}"/>
+            <apex:column headerValue="Account Name">
+                <apex:outputLink value="/{!acct.Id}">
+                    {!acct.Name}
+                </apex:outputLink>    
+            </apex:column>        
+            <apex:column headerValue="Rating" value="{!acct.Rating}"/>
+            <apex:column headerValue="Industry" value="{!acct.Industry}"/>
+            <apex:column headerValue="AnnualRevenue" value="{!acct.AnnualRevenue}"/>
+            <apex:column headerValue="Type" value="{!acct.Type}"/>
+            <apex:column headerValue="Phone" value="{!acct.Phone}"/>
+            <apex:column headerValue="Active" value="{!acct.Active__c}"/>
+        </apex:pageBlockTable>
+        <apex:panelGrid columns="2">
+            <apex:outputText value="Page {!PaginationPage} of {!PaginationTotalPages}"/> 
+            <apex:commandLink action="{!Next}" value="Next" id="theNextLink"/>
+            <apex:commandLink action="{!Last}" value="Last" id="theLastLink"/>
+        </apex:panelGrid>
+    </apex:pageBlock>
+</apex:form>
+</apex:page>
