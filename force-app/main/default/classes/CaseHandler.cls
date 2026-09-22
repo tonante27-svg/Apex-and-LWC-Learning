@@ -1,3 +1,8 @@
+/** 
+  This is the Abstract handler to be extended by:
+  Extended By: EMailCaseHandler & PhoneCaseHandler classes.
+**/
+@SuppressWarnings('PMD.ApexDoc, PMD.ClassNamingConventions')
 public abstract with sharing class CaseHandler {
   public CaseHandler() {
   }
