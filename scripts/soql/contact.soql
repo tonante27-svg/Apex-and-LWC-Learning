@@ -1,2 +1,8 @@
- SELECT Id, LastName FROM Contact
-      WHERE accountId = '0017100000XXGe6AAH'
+ SELECT
+          Id,
+          MailingStreet,
+          MailingCity,
+          MailingPostalCode,
+          MailingState,
+          MailingCountry
+        FROM Contact

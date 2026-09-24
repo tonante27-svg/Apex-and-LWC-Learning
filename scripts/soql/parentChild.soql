@@ -1,0 +1,1 @@
+Select Id, Industry, AnnualRevenue, (Select FirstName,LastName FROM Contacts) From Account limit 5

@@ -125,9 +125,21 @@
 // currentTransaction.makePayment();
 
 //Abstraction - Abstract CLasses
-CaseHandler currHandler = new EmailCaseHandler();
-Case passedCase = currHandler.createCase();
-currHandler.assignCase(passedCase);
-currHandler = new PhoneCaseHandler();
-passedCase = currHandler.createCase();
-currHandler.assignCase(passedCase);
+// CaseHandler currHandler = new EmailCaseHandler();
+// Case passedCase = currHandler.createCase();
+// currHandler.assignCase(passedCase);
+// currHandler = new PhoneCaseHandler();
+// passedCase = currHandler.createCase();
+// currHandler.assignCase(passedCase);
+
+// List<String> Industries = new List<String>{
+//   'Energy',
+//   'Hospitality',
+//   'Education'
+// };
+// List<Account> accList = [
+//   SELECT Id, Name, Industry
+//   FROM Account
+//   WHERE Industry IN :Industries
+// ];
+// system.debug('Account List ==>: ' + accList);
