@@ -6,5 +6,11 @@
     "**/.sfdx": true
   },
   "xml.preferences.showSchemaDocumentationType": "none",
-  "salesforce.einsteinForDevelopers.enable": true
+  "salesforce.einsteinForDevelopers.enable": true,
+
+  "[html]": {
+    "editor.formatOnSave": false,
+    "editor.autoClosingQuotes": "never"
+  },
+  "editor.autoClosingQuotes": "never"
 }

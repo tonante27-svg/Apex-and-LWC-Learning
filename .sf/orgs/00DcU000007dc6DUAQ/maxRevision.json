@@ -1,0 +1,41 @@
+{
+    "serverMaxRevisionCounter": 13,
+    "sourceMembers": {
+        "Profile__Admin": {
+            "serverRevisionCounter": 4,
+            "lastRetrievedFromServer": null,
+            "memberType": "Profile",
+            "isNameObsolete": false
+        },
+        "ApexClass__ContactManager": {
+            "serverRevisionCounter": 5,
+            "lastRetrievedFromServer": null,
+            "memberType": "ApexClass",
+            "isNameObsolete": false
+        },
+        "LightningComponentBundle__contactManager": {
+            "serverRevisionCounter": 6,
+            "lastRetrievedFromServer": 6,
+            "memberType": "LightningComponentBundle",
+            "isNameObsolete": false
+        },
+        "LightningComponentResource__contactManager/contactManager.js-meta.xml": {
+            "serverRevisionCounter": 7,
+            "lastRetrievedFromServer": 7,
+            "memberType": "LightningComponentResource",
+            "isNameObsolete": false
+        },
+        "LightningComponentResource__contactManager/contactManager.js": {
+            "serverRevisionCounter": 8,
+            "lastRetrievedFromServer": 8,
+            "memberType": "LightningComponentResource",
+            "isNameObsolete": false
+        },
+        "LightningComponentResource__contactManager/contactManager.html": {
+            "serverRevisionCounter": 9,
+            "lastRetrievedFromServer": 9,
+            "memberType": "LightningComponentResource",
+            "isNameObsolete": false
+        }
+    }
+}

@@ -1,11 +1,21 @@
-# List files or directories below to ignore them when running prettier
-# More information: https://prettier.io/docs/en/ignore.html
-#
+# Salesforce Metadata XML Files (prevents "No parser could be inferred" errors)
+**/*.xml
 
-**/staticresources/**
-.localdevserver
-.sfdx
-.sf
-.vscode
+# Salesforce DX build & cache folders
+.sf/
+.sfdx/
+.localdevserver/
 
+# Test coverage reports & node dependencies
 coverage/
+node_modules/
+
+# LWC generated configurations
+**/jsconfig.json
+
+# Git & IDE folders
+.git/
+.vscode/
+
+# Static Resources or external libraries
+force-app/main/default/staticresources/
