@@ -7,8 +7,9 @@ import { createRecord } from "lightning/uiRecordApi";
 import STATUS_FIELD from "@salesforce/schema/Case.Status";
 import PRIORITY_FIELD from "@salesforce/schema/Case.Priority";
 import ORIGIN_FIELD from "@salesforce/schema/Case.Origin";
-import ACCOUNTID_FIELD from "@salesforce/schema/Account.Id";
-import CONTACTID_FIELD from "@salesforce/schema/Contact.Id";
+import SUBJECT_FIELD from "@salesforce/schema/Case.Subject";
+import ACCOUNTID_FIELD from "@salesforce/schema/Case.AccountId";
+import CONTACTID_FIELD from "@salesforce/schema/Case.ContactId";
 
 import Toast from "lightning/toast";
 import CASE_OBJECT from "@salesforce/schema/Case";
@@ -21,6 +22,7 @@ export default class GetCasePickListValues extends LightningElement {
   @track originPKValues = [];
 
   error;
+  caseSubjectValue;
   selectedStatusValue;
   selectedPriorityValue;
   selectedOriginValue;
@@ -52,8 +54,21 @@ export default class GetCasePickListValues extends LightningElement {
   }
 
   async handleCreateCase() {
+    if (
+      !this.selectedStatusValue ||
+      !this.selectedOriginValue ||
+      !this.selectedPriorityValue
+    ) {
+      this.handleToast(
+        "Validation Error",
+        "Please select Status, Origin, and Priority.",
+        "warning",
+      );
+      return;
+    }
     // 1. Map values using field API names as keys
     const fields = {};
+    fields[SUBJECT_FIELD.fieldApiName] = this.caseSubjectValue;
     fields[STATUS_FIELD.fieldApiName] = this.selectedStatusValue;
     fields[PRIORITY_FIELD.fieldApiName] = this.selectedPriorityValue;
     fields[ORIGIN_FIELD.fieldApiName] = this.selectedOriginValue;
@@ -65,6 +80,9 @@ export default class GetCasePickListValues extends LightningElement {
         fields[CONTACTID_FIELD.fieldApiName] = this.recordId;
       }
     }
+    //Check sanity of recordID and fields
+    console.log("=== RECORD ID ===", this.recordId);
+    console.log("=== PAYLOAD FIELDS ===", JSON.stringify(fields));
     // 2. Prepare the recordInput payload
     const recordInput = {
       apiName: CASE_OBJECT.objectApiName,
@@ -80,11 +98,23 @@ export default class GetCasePickListValues extends LightningElement {
       );
       this.resetForm();
     } catch (error) {
-      this.handleToast(
-        "Error on Case Creation ",
-        error.body ? error.body.message : error.message,
-        "error",
+      // Extracts exact field-level errors or top-level page errors
+      const errorMessage =
+        error.body?.message ||
+        error.body?.output?.errors?.[0]?.message ||
+        error.message ||
+        "Unknown error occurred";
+      //call Toast error handler
+      console.error("======= ERROR MESSAGE ====", errorMessage);
+      console.error(
+        "=== FIELD ERRORS ===",
+        JSON.stringify(error.body?.output?.fieldErrors),
       );
+      console.error(
+        "=== PAGE ERRORS ===",
+        JSON.stringify(error.body?.output?.errors),
+      );
+      this.handleToast("Error Creating Case", errorMessage, "error");
     }
   }
   handleStatusChange(event) {
@@ -97,6 +127,10 @@ export default class GetCasePickListValues extends LightningElement {
 
   handlePriorityChange(event) {
     this.selectedPriorityValue = event.target.value;
+  }
+
+  handleSubjectChange(event) {
+    this.caseSubjectValue = event.target.value;
   }
 
   resetForm() {

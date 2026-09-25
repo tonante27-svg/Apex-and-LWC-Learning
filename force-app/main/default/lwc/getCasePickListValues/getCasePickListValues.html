@@ -1,6 +1,13 @@
 <template>
     <lightning-card title='Case Creator' icon-name="standard:case" variant="base">
+        
         <div class="slds-var-p-around_small">  
+            <lightning-input 
+              type="text"
+              label="Subject"
+              value={caseSubjectValue}
+              onchange={handleSubjectChange}
+            ></lightning-input>
             <lightning-combobox
                 name="Origin"
                 label="Origin"
