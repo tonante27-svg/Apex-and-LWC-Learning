@@ -1,0 +1,37 @@
+<template>
+    <lightning-card title='Case Creator' icon-name="standard:case" variant="base">
+        <div class="slds-var-p-around_small">  
+            <lightning-combobox
+                name="Origin"
+                label="Origin"
+                value={selectedOriginValue}
+                placeholder="Select Origin"
+                options={originPKValues}
+                onchange={handleOriginChange}
+            ></lightning-combobox>
+            <lightning-combobox
+                name="Priority"
+                label="OrigPriority"
+                value={selectedPriorityValue}
+                placeholder="Select Priority"
+                options={priorityPKValues}
+                onchange={handlePriorityChange}
+            ></lightning-combobox>
+            <lightning-combobox
+                name="Status"
+                label="Status"
+                value={selectedStatusValue}
+                placeholder="Select Status"
+                options={statusPKValues}
+                onchange={handleStatusChange}
+            ></lightning-combobox>
+        </div>
+        <div>
+            <lightning-button 
+              variant="brand"
+              label="Create Case" 
+              onclick={handleCreateCase} 
+            ></lightning-button>
+        </div>
+    </lightning-card>
+</template>
