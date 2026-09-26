@@ -1,3 +1,23 @@
+/*. RESUSABLE PICKLIST COMPONENT
+<template>
+    <lightning-card icon-name="standard:account" variant="base">
+      <div class="slds-var-m-around_small">
+        <c-get-picklist-vaules object-api-name="Account" field-api-name="Industry" label="Industry" placeholder="Select industry" onvaluechange={handleValueChange}></c-get-picklist-vaules>
+    </div>
+      <div class="slds-var-m-around_small">
+         <c-get-picklist-vaules object-api-name="Account" field-api-name="AccountSource" label="Account Source" placeholder="Select Account Source" onvaluechange={handleValueChange}></c-get-picklist-vaules>
+      </div>
+      <div class="slds-var-m-around_small">
+        <c-get-picklist-vaules object-api-name="Contact" field-api-name="Level__c" label="Level" placeholder="Select Level" onvaluechange={handleValueChange}></c-get-picklist-vaules>
+      </div>
+     <div class="slds-var-m-around_small">
+        <c-get-picklist-vaules object-api-name="Contact" field-api-name="LeadSource" label="LeadSource" placeholder="Select LeadSource" onvaluechange={handleValueChange}></c-get-picklist-vaules>
+      </div>
+       
+    </lightning-card>
+</template>
+*/
+
 import { LightningElement, wire, api, track } from "lwc";
 import {
   getObjectInfo,
@@ -22,6 +42,7 @@ export default class GetPicklistVaules extends LightningElement {
   objectInfoHandler({ data, error }) {
     if (data) {
       this.resolvedRecordTypeId = this.recordTypeId || data.defaultRecordTypeId;
+      console.log("=== FIELD API NAME 1 === " + this.fieldApiName);
     } else if (error) {
       this.error = error;
       console.error("===ERROR == ", this.error);
@@ -33,7 +54,7 @@ export default class GetPicklistVaules extends LightningElement {
   })
   wirePicklistValues({ data, error }) {
     if (data) {
-      /*  TO remeber the reutned structure
+      /*  TO remeber the returned structure for objAPiName = Account
         data={
           picklistFieldValues:{
             Type: {
@@ -57,46 +78,23 @@ export default class GetPicklistVaules extends LightningElement {
       ) {
         let picklistValues = data.picklistFieldValues[this.fieldApiName];
         this.industryPicklistValues = picklistValues.values;
+        console.log("=== FIELD API NAME 2 === " + this.fieldApiName);
       } else if (error) {
         this.error = error;
         console.error("=== ERROR== ", this.error);
       }
     }
   }
-  //The follwoing have been commented out since they are for the static solution
-  // 1. Get object info → extract a real Record Type Id
-  // @wire(getObjectInfo, { objectApiName: ACCOUNT_OBJECT })
-  // objectInfoHandler({ data, error }) {
-  //   if (data) {
-  //     this.recordTypeId = data.defaultRecordTypeId;
-  //   } else if (error) {
-  //     this.error = error;
-  //     console.error("===ERROR == ", this.error);
-  //   }
-  // }
-
-  // @wire(getPicklistValues, {
-  //   recordTypeId: "$recordTypeId",
-  //   fieldApiName: INDUSTRY_FIELD,
-  // })
-  // wirePicklistHandler({ data, error }) {
-  //   if (data) {
-  //     console.log("==picklist values===", data);
-  //     this.industryPicklistValues = data.values;
-  //   }
-  //   if (error) {
-  //     console.error("getPicklistValues error", error);
-  //   }
-  // }
 
   get options() {
     return this.industryPicklistValues;
   }
 
   handleChange(event) {
-    this.selectedValue = event.target.value;
+    event.preventDefault();
+    this.selectedValue = event.detail ? event.detail.value : event.target.value;
     this.dispatchEvent(
-      new CustomEvent("change", {
+      new CustomEvent("valuechange", {
         detail: {
           fieldApiName: this.fieldApiName,
           value: this.selectedValue,
