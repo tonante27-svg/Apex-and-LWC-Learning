@@ -1,10 +1,10 @@
 <template>
   <lightning-combobox
-    name="Industry"
-    label="Industry"
+    name={label}
+    label={label}
     value={selectedValue}
-    placeholder="Select Industry"
-    options={industryPicklistValues}
+    placeholder={placeholder}
+    options={options}
     onchange={handleChange}
     
   ></lightning-combobox>

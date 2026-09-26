@@ -1,0 +1,17 @@
+<template>
+    <lightning-card icon-name="standard:account" variant="base">
+      <div class="slds-var-m-around_small">
+        <c-get-picklist-vaules object-api-name="Account" field-api-name="Industry" label="Industry" placeholder="Select industry" onchange={handleValueChange}></c-get-picklist-vaules>
+    </div>
+      <div class="slds-var-m-around_small">
+         <c-get-picklist-vaules object-api-name="Account" field-api-name="AccountSource" label="Account Source" placeholder="Select Account Source" onchange={handleValueChange}></c-get-picklist-vaules>
+      </div>
+      <div class="slds-var-m-around_small">
+        <c-get-picklist-vaules object-api-name="Contact" field-api-name="Level__c" label="Level" placeholder="Select Level" onchange={handleValueChange}></c-get-picklist-vaules>
+      </div>
+     <div class="slds-var-m-around_small">
+        <c-get-picklist-vaules object-api-name="Contact" field-api-name="LeadSource" label="LeadSource" placeholder="Select LeadSource" onchange={handleValueChange}></c-get-picklist-vaules>
+      </div>
+       
+    </lightning-card>
+</template>
