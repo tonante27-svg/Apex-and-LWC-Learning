@@ -142,4 +142,35 @@
 //   FROM Account
 //   WHERE Industry IN :Industries
 // ];
-// system.debug('Account List ==>: ' + accList);
+
+// -- Database.Query() -
+// String inputStr = 'SELECT Id, Name FROM Account limit 5';
+// List<SObject> resultList = Database.query(inputStr);
+// system.debug('SOBject List  === > '+resultList) ;
+// system.debug('Account List === > '+(List<Account>)Database.query(inputStr)) ;
+
+// String objName = 'Contact';
+// String inputQuery = 'SELECT Id, lastName FROM '+objName +' LIMIT 5'; 
+// List<SObject> resutlList = Database.Query(inputQuery);
+// system.debug(' RESULTLIST ---> '+resutlList);
+
+// -- Problem with Dynamic Query -- SOQL injection
+//Ex: objName = 'SELECT Id, Lastname FROM contact where lastname  = 'smith\' OR lastname !=\'x'
+// public static List<Contact> getContacts(String lastNameInput){
+//     string safeInput = String.escapeSingleQuote(lastNameInput); //3 sol;ution suing String.ecsapeSingleQuote()
+//     String Query = 'SELECT Id , Name FROM COntact WHERE lastname= \'' + safeInput + '\''
+//     string query = 'SELECT Id, Name FROM Contact WHERE LastName =: lastNameInput];
+//     //List<Contact> conList = [SELECT Id, Name FROM Contact WHERE LastName = :lastNameInput];// Ue Bind Variable
+//     //2- validate the input  using IF - conditional
+//     //3 - Use String.escapeSingleQuote()
+//     return Database.query(query);
+// }
+
+//-- ALL ROWS--
+// List<Account> accounts = [SELECT Id, Name FROM Account ALL ROWS];
+// system.debug('AccList size == '+accounts.size());
+// system.debug('Acc List ===> '+accounts);
+
+//FOR UPDATE
+List<Account> accounts = [SELECT Id, Name FROM Account FOR UPDATE];
+system.debug('Accounts =====> '+accounts);
