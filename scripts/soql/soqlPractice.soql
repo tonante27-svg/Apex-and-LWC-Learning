@@ -1,0 +1,33 @@
+//1. find all accounts that don't have any related Opportunities
+SELECT Id,Name From Account Where Id Not In ( Select AccountId from Opportunity )
+
+//2. Retrieve all Opportunties closed in last 90 days and amount is > 10000
+Select  Id, Name from Opportunity WHERE closedDate > LAST_90_DAYS and amount > 10000
+
+//3. Accounts with more than 3 associated COntacts*/
+SELECT Account.Name,AccountId, COUNT(Id) 
+FROM Contact 
+WHERE AccountID!=Null
+GROUP BY AccountId,Account.Name 
+HAVING COUNT(Id) > 3
+
+//4. List all Contacts that do not have an associate account
+Select Id, AccountId From Contact Where AccountId Not In ( Select Id from Account )
+
+//5. Fetch all tasks associated with an opportunity where Status is closed-won
+Select Id,WhatId From Task  WHERE WhatId  IN (Select Id from Opportunity where StageName = 'CLOSED-WON')
+
+//6. for each acocunt fetch opportunities of the  first 3 Max Amounts 
+Select Id, Name,(SELECT Amount FROM Opportunities  ORDER BY Amount DESC LIMIT 3) FROM Account WHERE Id IN (SELECT AccountId FROM Opportunity WHERE Amount != NULL)
+
+//7. Find all Accounts having open cases.
+Select Id, Name FROM Account WHERE Id IN (SELECT AccountId,Id FROM Case where  Status != 'Closed')
+
+//8. Opps where account industry = 'Banking' and has accociated contact(s) where the email ends in '.org'
+Select Id FROM Opportunity where Account.Industry = 'Banking' And AccountId IN (Select AccountId From Contact WHERE Email Like '%.org')
+
+//9. Find all acocunts that have at least 1 opportunity with Stage = "Close-WOn"
+Select Id,Name from Account WHERE Id IN (Select AccountId FROM Opportunity WHERE StageName='Closed Won')
+
+//10. Get all contacts whose parent account currently has an associate open case
+Select AccountId,Account.Name,Id, LastName FROM Contact  WHERE AccountId IN (Select AccountId From Case WHERE Status != 'Closed' )

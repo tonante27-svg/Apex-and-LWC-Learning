@@ -1,0 +1,17 @@
+<template>
+    <lightning-modal-header label="Modal Account Form"></lightning-modal-header>
+    <lightning-modal-body>
+        <lightning-record-form
+            record-id="0017100000aBGzIAAW"
+            columns="2"
+            layout-type="Compact"
+            object-api-name="Account"
+            fields={fields}
+        ></lightning-record-form>
+    </lightning-modal-body>
+    <lightning-modal-footer>
+        <lightning-button label="Cancel" onclick={handleCancel}></lightning-button>
+        &nbsp;&nbsp;
+        <lightning-button label="Save" onclick={handleClick}></lightning-button>
+    </lightning-modal-footer>
+</template>

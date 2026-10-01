@@ -1,0 +1,16 @@
+<template>
+    <lightning-card title='Extended Data Table' icon-name="standard:account" variant="base">
+    <lightning-datatable
+        key-field="id"
+        data={records}
+        columns={columnList}
+      ></lightning-datatable>
+      <br/><br/>
+      <c-ltngdatatable>
+        key-field="Id"
+        data={records}
+        columns={columnList}
+        </c-ltngdatatable>
+    </lightning-card>
+    
+</template>
