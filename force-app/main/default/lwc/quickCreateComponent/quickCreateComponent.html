@@ -1,0 +1,16 @@
+<template>
+  <lightning-card>
+    <div class="slds-var-m-around_medium">
+       <lightning-record-form
+        object-api-name={objectApiName}
+        fields={fieldsToCreate}
+        onsuccess={handlerSuccess}
+        onerror={handlerError}
+        onsubmit={handlerSubmit}
+        columns="2"
+        mode="edit"
+     ></lightning-record-form>
+    </div>
+    </lightning-card> 
+   
+</template>

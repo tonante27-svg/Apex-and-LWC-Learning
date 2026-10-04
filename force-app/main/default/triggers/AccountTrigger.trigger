@@ -43,7 +43,18 @@ trigger AccountTrigger on Account (
                 insert acctAuditList;            
             }
         else if(Trigger.isUnDelete){
+            //Restore all the delted records and assing thenm to Default Sales User
             system.debug('AFTER UNDELETE logic is running'); 
+            User someUser = [SELECT Id, Name FROM User WHERE Name = 'Default Sales User' LIMIT 1];
+            List<Account> acctRestored = new List<Account>();
+            for(Account acc : Trigger.new){
+                acctRestored.add(new Account(
+                    Id = acc.Id,
+                    OwnerId = someUser.Id,
+                    Active__c = 'Yes'
+                ));
+            }
+            update acctRestored;
         }
         
     }  

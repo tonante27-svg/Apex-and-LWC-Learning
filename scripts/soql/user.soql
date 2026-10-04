@@ -1,0 +1,1 @@
+SELECT Id, Name FROM User WHERE Name = 'Default Sales User' LIMIT 1
