@@ -172,5 +172,9 @@
 // system.debug('Acc List ===> '+accounts);
 
 //FOR UPDATE
-List<Account> accounts = [SELECT Id, Name FROM Account FOR UPDATE];
+//List<Account> accounts = [SELECT Id, Name FROM Account FOR UPDATE];
+List<Account> accounts = [SELECT Id, Name FROM Account LIMIT 5];
+
 system.debug('Accounts =====> '+accounts);
+ID jobID = System.enqueueJob(new SampleQueueableJob(accounts));
+//system.debug('JOBID =====> '+jobID);

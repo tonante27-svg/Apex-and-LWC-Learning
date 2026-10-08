@@ -1,8 +1,9 @@
 <template>
   <lightning-card>
-    <div class="slds-var-m-around_medium">
+   <template lwc:if={length}>
+      <div class="slds-var-m-around_medium">
        <lightning-record-form
-        object-api-name={objectApiName}
+        object-api-name={objApiName}
         fields={fieldsToCreate}
         onsuccess={handlerSuccess}
         onerror={handlerError}
@@ -11,6 +12,15 @@
         mode="edit"
      ></lightning-record-form>
     </div>
+   </template>
+     <template lwc:else>
+      <div class="slds-var-m-around_medium" style="color:red"> 
+       <p>No Metadata was configured. Please contact your admin.</p>
+        <li>Object Api Name: {objApiName}</li>
+        <li>Place To Be Used: {placeTobeUsed}</li>
+        </div>
+     </template>
+   
     </lightning-card> 
    
 </template>

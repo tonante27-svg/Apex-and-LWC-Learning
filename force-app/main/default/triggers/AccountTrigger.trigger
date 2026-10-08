@@ -24,6 +24,8 @@ trigger AccountTrigger on Account (
         system.debug('Entered AFTER trigger');
         if(Trigger.isInsert) {
             system.debug('AFTER INSERT logic is running');
+             // system.enqueueJob(new CreateContactQueueable(Trigger.new));
+             system.enqueueJob(new CreateAccountLogQueueable(Trigger.new));
         }
         else if(Trigger.isUpdate){
             system.debug('AFTER UPDATE logic is running');

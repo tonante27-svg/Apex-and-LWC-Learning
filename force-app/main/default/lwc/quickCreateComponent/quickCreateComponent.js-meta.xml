@@ -11,8 +11,8 @@
     </targets>
     <targetConfigs>
         <targetConfig targets="lightning__RecordPage,lightning__AppPage,lightning__UtilityBar,lightning__FlowScreen">
-            <property name="objectApiName" required="true" type="String" default="Case" label="Enter the Object API Name" description="This field will contain the object name"/>
-            <property name="placeToBeUsed" type="String" default="Case Record Page" label="Provide the value where this component will be used." description="This will be helpful to identify which metaadata record to use "/>
+            <property name="objApiName" required="true" type="String" default="Case" label="Enter the Object API Name" description="This field will contain the object name"/>
+            <property name="placeToBeUsed" type="String" default="Case Record Page" label="Provide the value where this component will be used." description="This will be helpful to identify which metaadata record to use " required="true"/>
         </targetConfig>
     </targetConfigs>
 </LightningComponentBundle>
