@@ -1,12 +1,11 @@
-public with sharing class HighValueCustomersBatch implements Database.Batchable<AggregateResult>, 
-    Iterable<AggregateResult>{
+public with sharing class HighValueCustomersBatch implements Database.Batchable<AggregateResult>{
     /**
      * Returns the Account records selected for processing in this batch.
      * @return Query locator for the Account records.
      */
-    public   Iterable<AggregateResult> start() {
+    public Iterable<AggregateResult> start(database.BatchableContext BC) {
         List<AggregateResult> data = [SELECT accountId accid,SUM(AMOUNT) totalAMt from Opportunity
-                                        WHERE isClosed = true GROUP BY AcocuntId HAVING SUM(Amount) > 50000];
+                                        WHERE isClosed = true GROUP BY AccountId HAVING SUM(Amount) > 50000];
         return data;
     }
     
