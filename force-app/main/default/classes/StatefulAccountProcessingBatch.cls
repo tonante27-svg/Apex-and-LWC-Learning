@@ -36,6 +36,6 @@ Database.Stateful {
         System.debug('Total records processed: '+totalProcessed);
         System.debug('Total records failed: '+totalFailed);
         System.debug('Total records suuccessful: '+totalFailed);
-        
+        Database.executeBatch(new RetryFailedAccountsBatch(failedRecords));
     }
 }
