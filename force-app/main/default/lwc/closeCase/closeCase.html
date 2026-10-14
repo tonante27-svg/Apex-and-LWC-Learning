@@ -1,7 +1,18 @@
 <template>
-    <lightning-card title="Closed Case" icon-name="standard:case" >
-        <c-quick-edit-component record-id={recordId} object-api-name={objectApiName} place-to-be-used={placeToBeUsed} 
-          fields-to-edit={fieldsToEdit}>
-        </c-quick-edit-component>
+    <lightning-card title="Closed Case" icon-name="standard:case">
+        <lightning-button 
+            variant="brand"
+            label="Close Case" 
+            onclick={handleClose}>
+        </lightning-button>
+
+        <template lwc:if={showCloseCaseComponent}>
+            <c-quick-edit-component 
+                record-id={recordId} 
+                object-api-name={objectApiName} 
+                place-to-be-used={placeToBeUsed} 
+                fields-to-edit={fieldsToEdit}>
+            </c-quick-edit-component>
+        </template>
     </lightning-card>
 </template>

@@ -1,9 +1,10 @@
+// quickEditComponent is Called By : CloseCase LWC
 import { LightningElement, api, track, wire } from "lwc";
 import getMetadataObjectRecords from "@salesforce/apex/MetadataRetreiver.getMetadataObjectRecords";
 export default class QuickEditComponent extends LightningElement {
   @api recordId;
   @api objectApiName;
-  @track fieldsToEdit = [];
+  @track fieldsToEdit = []; // Dynamic fields from different objects
   @api placeToBeUsed;
   length;
 
@@ -22,11 +23,6 @@ export default class QuickEditComponent extends LightningElement {
           fieldApiName: field.FieldAPIName__r.QualifiedApiName,
         };
       });
-      /*if (this.fieldsToEdit.length && this.fieldsToEdit.length > 0) {
-        this.length = this.fieldsToEdit.length;
-      } else {
-        this.length = 0;
-      }*/
     }
 
     if (error) {
@@ -40,6 +36,6 @@ export default class QuickEditComponent extends LightningElement {
     console.log("EDIT COMPONENT LOADED");
   }
 
-  handleSucess(event) {}
-  handleError(event) {}
+  handleSuccess() {}
+  handleError() {}
 }

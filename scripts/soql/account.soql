@@ -1,1 +1,1 @@
-SELECT  Id, Name,Industry FROM Account WHERE Industry NOT IN ('Banking','Energy','Education')
+SELECT  Id, Name,Industry,LastModifiedDate FROM Account WHERE Industry NOT IN ('Banking','Energy','Education') AND  LastModifiedDate <= LAST_N_YEARS:2
