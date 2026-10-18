@@ -10,8 +10,8 @@
     </targets>
     <targetConfigs>
         <targetConfig targets="lightning__RecordPage">
-            <property name="placeToBeUsed" type="String" required="true" label="placeToBeUsed"
-            description="This will determine what fields to display in the component" />
+            <property name="placeToBeUsed" type="String" required="true" label="Place To Be Used"
+            default='Case Close Page' description="This will determine what fields to display in the component" />
         </targetConfig>
     </targetConfigs>
 </LightningComponentBundle>

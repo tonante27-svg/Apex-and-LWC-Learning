@@ -6,4 +6,10 @@ export default class CloseCase extends LightningElement {
   @api placeToBeUsed;
 
   @track fieldsToEdit = [];
+
+  showCloseCaseComponent = false;
+
+  handleClose() {
+    this.showCloseCaseComponent = true;
+  }
 }
