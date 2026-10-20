@@ -1,0 +1,27 @@
+<template>
+    <lightning-card  title="Conditional Rendering" icon-name="utility:apps" variant="base">
+      <div class="slds-var-m-around_medium">
+          <lightning-button 
+            variant="brand"
+            label="Show Data" 
+            title="Show Data"
+            onclick={handleClick} 
+            clas="slds-var-m-left_large"
+          ></lightning-button>
+          <template lwc:if={isVisible}>
+            <div><b>Welcome to Zero to Hero series</b> 🥳</div>
+          </template>
+           <template lwc:else>
+                <div>You can't see the data! 🔍  Please click the Button</div>
+          </template>
+          <lightning-input 
+            type="text"
+            label="Type 'hello' to see the data"
+            onchange={handlerChange}
+          ></lightning-input>
+          <template lwc:if={helloMethod}>
+             <div>🎉<b>Hurray you have types correctly</b> 🥳</div>
+          </template>
+      </div>
+    </lightning-card>
+</template>

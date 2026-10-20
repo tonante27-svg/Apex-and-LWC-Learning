@@ -1,0 +1,36 @@
+<template>
+    <lightning-card variant="Narrow" title="2-Way Data Binding" icon-name="utility:announcement">
+        <div class="slds-var-p-horizontal_medium">
+            <lightning-input 
+            type="text"
+            label="Enter Course Name"
+            onchange={handlerOnChange}
+            ></lightning-input>
+        </div>
+        
+        <div class="slds-var-p-horizontal_small">
+            {fullname} is a course of {title}
+        </div>
+    </lightning-card>
+    <lightning-card variant="Narrow" title="@track properties" icon-name="utility:announcement">
+        <div class="slds-var-p-horizontal_medium">
+            <lightning-input 
+            type="text"
+            label="Enter City"
+            onchange={handlerTrack}
+            ></lightning-input>
+        </div>
+        <div class="slds-var-p-horizontal_small">
+            {address.city} is my City
+        </div>
+     </lightning-card>
+      <lightning-card variant="Narrow" title="Getter Demo" icon-name="utility:announcement">
+        <div class="slds-var-p-horizontal_medium">
+           
+        </div>
+        <div class="slds-var-p-horizontal_small">
+            <div>First unsername is: {firstUser}</div>
+            <div>Sum of {num1} and {num2} is: {sumOfNumbers}</div>
+        </div>
+     </lightning-card>
+</template>
