@@ -2,13 +2,7 @@
 public with sharing class TestAccountUpdater {
     @TestSetup 
     public static void createData (){
-        List<Account> accounts = new List<Account>();
-        for(Integer i = 0; i <10; i++){
-            accounts.add(
-                new Account( Name = 'Account TestUpdater'+i)
-            );
-        }
-        insert accounts;
+       Account acc = TestDataFactory.createNewAccount();
     }
 
     @IsTest
@@ -22,8 +16,18 @@ public with sharing class TestAccountUpdater {
             if(!accIds.isEmpty()){
                 AccountUpdater.updateAccountDescriptions(accIds);
             }
-            checkAccountUpdates = [SELECT Id, Description FROM Account WHERE Id In:accIds  ];
+           // checkAccountUpdates = [SELECT Id, Description FROM Account WHERE Id In:accIds  ];
         Test.stopTest();
-        system.assertEquals('Update Account Description with AccountUpdater', checkAccountUpdates[0].Description);
+        checkAccountUpdates = [SELECT Id, Description FROM Account WHERE Id In:accIds  ];
+
+        system.assertEquals('Update Account Description with AccountUpdater', checkAccountUpdates[0].Description, 'Account Description Should be Updated');
+    }
+
+     @IsTest
+    public static void testFailedUpdates(){
+            Account acc = [SELECT Id,Description FROM Account Limit 1];
+            AccountUpdater.updateAccountDescriptions(new Set<Id>{});
+            Account  checkAccountUpdates = [SELECT Id,Description FROM Account WHERE Id=: acc.Id];
+            system.assertEquals(null, checkAccountUpdates.Description, 'Account Update failed. No account created');
     }
 }
