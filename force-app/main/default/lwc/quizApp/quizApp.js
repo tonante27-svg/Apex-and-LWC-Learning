@@ -13,7 +13,6 @@ export default class QuizApp extends LightningElement {
             },
             correctAnswer:"c"
         },
-    
         {
             id:"Question2",
             question: "Which of the following is invalid in LWC component folder?",
@@ -35,8 +34,8 @@ export default class QuizApp extends LightningElement {
             correctAnswer:"c"
         },
     ];
-    isSubmitted = false;
-    selected={};// for storing answers
+    isSubmitted = false;//used to verify if the quiz form has been submitted.
+    selected={};// for storing user's selected answers
     // Gets the number of sleected answers form the form  for every click on the radio button options
       changeHandler(event){
         const{name,value} = event.target;
