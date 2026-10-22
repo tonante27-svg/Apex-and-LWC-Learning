@@ -3,7 +3,9 @@
         <div class="slds-var-m-around_medium">
            <ul class="slds-has-dividers_around-space">
                 <template for:each={carList} for:item="car">
-                    <li key={car} class="slds-item">{car}</li>
+                    <div key={car}>
+                    <li class="slds-item">{car}</li>
+                    </div>
                 </template>
             </ul>
         </div>
