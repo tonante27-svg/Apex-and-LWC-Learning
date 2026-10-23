@@ -12,12 +12,12 @@ public with sharing class TestAccountUpdater {
             accIds.add(acct.Id);
         }
         List<Account>  checkAccountUpdates = new  List<Account>();
-        Test.startTest();
+       // Test.startTest();
             if(!accIds.isEmpty()){
                 AccountUpdater.updateAccountDescriptions(accIds);
             }
            // checkAccountUpdates = [SELECT Id, Description FROM Account WHERE Id In:accIds  ];
-        Test.stopTest();
+        //Test.stopTest();
         checkAccountUpdates = [SELECT Id, Description FROM Account WHERE Id In:accIds  ];
 
         system.assertEquals('Update Account Description with AccountUpdater', checkAccountUpdates[0].Description, 'Account Description Should be Updated');
