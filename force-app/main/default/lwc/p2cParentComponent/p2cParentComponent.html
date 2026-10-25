@@ -1,8 +1,28 @@
 <template>
+    <!--Example of Simple (Primitive Type) Data -->
     <c-p2c-alert-component
         message="Hurray!! I  got  the data"
         card-heading="Parent to Child primitive data communication"
         some-number=20
         is-valid="false">
     </c-p2c-alert-component>
+    <!--Exampe of Complex (non-Primitive Type) Data -->
+    <div class="slds-var-m-bottom_medium"></div>   
+    <c-p2c-carousel-component carousel-details={carouselData}></c-p2c-carousel-component>
+      <!--Exampe of Data  Passing on event/action -->
+    <div class="slds-var-m-bottom_medium"></div> 
+     <lightning-card title="Parent to Child communication on action" icon-name="utility:broadcast" variant="base">
+        <div class="slds-var-m-around_medium">
+            <lightning-input 
+                type="number"
+                label="Enter percentage"
+                onkeyup={handleChange}
+                value={percentage}
+            ></lightning-input>
+        
+            <c-p2c-progress-component percentage-value={percentage}></c-p2c-progress-component>
+        </div> 
+   
+    </lightning-card>
+   
 </template>

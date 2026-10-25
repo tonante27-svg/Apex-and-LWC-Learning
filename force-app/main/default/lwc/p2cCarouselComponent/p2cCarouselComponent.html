@@ -1,0 +1,20 @@
+<template>
+   <lightning-card icon-name="utility:apps" variant="base">
+     <div class="slds-var-m-around_medium">
+  <!--<div class="slds-box slds-box_x-small slds-text-align_center slds-m-around_x-small">-->
+    Basic Carousel
+    <lightning-carousel disable-auto-scroll>
+        <template for:each={carouselDetails} for:item="cdata">
+            <lightning-carousel-image
+                key={cdata.header}
+                src= {cdata.src}
+                header={cdata.header}
+                description={cdata.description}>
+            </lightning-carousel-image>
+        </template>
+      
+    </lightning-carousel>
+  <!--</div>-->
+</div>
+   </lightning-card> 
+</template>
