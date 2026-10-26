@@ -24,5 +24,21 @@
         </div> 
    
     </lightning-card>
+    <!--Calling Child Method from Parent using directive lwc:ref="child" -->
+    <div class="slds-var-m-bottom_medium">
+        <lightning-card variant="base">
+            <div class="slds-var-m-around_medium">
+                <lightning-button
+                    label="Reset Slider"
+                    variant="brand"
+                    onclick={handleClick}>
+                </lightning-button>
+                <c-p2c-slider-component lwc:ref="child"></c-p2c-slider-component>
+                <hr/>
+            </div>
+        </lightning-card>
+        
+    </div> 
    
+    
 </template>

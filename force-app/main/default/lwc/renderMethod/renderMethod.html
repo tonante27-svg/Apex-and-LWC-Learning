@@ -1,0 +1,15 @@
+<template>
+    <lightning-card title="RENDER PAGE: Render Multiple Templates" icon-name="utility:list" variant="base">
+      <div class="sld-var-m-around_medium">
+        <lightning-select
+            value={selectedTemplate}
+            label="Select a template"
+            options={renderOptions}
+            onchange={handleSelect}
+            class="sld-var-m-left_medium"
+        ></lightning-select>
+        <div  class="sld-var-m-bottom_medium"></div>
+      </div>
+    
+    </lightning-card>
+</template>

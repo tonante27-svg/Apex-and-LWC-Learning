@@ -29,4 +29,8 @@ export default class P2cParentComponent extends LightningElement {
             this.percentage = event.target.value;
             //console.log(`=== VALUE OF PERCENTAGE === ${this.ercentage}`);
         }
+
+        handleClick(){
+            this.refs.child.resetSlider();
+        }
 }
