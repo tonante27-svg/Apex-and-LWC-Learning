@@ -8,21 +8,21 @@ export default class RenderMethod extends LightningElement {
     selectedTemplate
     renderOptions = [
         {label:"Select Options",value:"Select Options"},
-        {label:"Signin", value:"Signin"},
-        {label:"Singup", value:"Signup"}
+        {label:"Sign-in", value:"Sign-in"},
+        {label:"Sign-up", value:"Sign-up"}
     ];
     signInOptions = [
         {label:"Render", value:"Render"},
-        {label:"Singup", value:"Signup"}
+        {label:"Sign-up", value:"Sign-up"}
     ];
     signUpOptions = [
         {label:"Render", value:"Render"},
-        {label:"Singin", value:"Signup"}
+        {label:"Sign-in", value:"Sign-in"}
     ];
     render(){
         console.log(`RENDER: >> The selected template is ===> ${this.selectedTemplate}`);
-        return this.selectedTemplate === "Signin" ? signinTemplate:
-        this.selectedTemplate === "Signup" ? signupTemplate:
+        return this.selectedTemplate === "Sign-in" ? signinTemplate:
+        this.selectedTemplate === "Sign-up" ? signupTemplate:
         renderTemplate;
     }
 

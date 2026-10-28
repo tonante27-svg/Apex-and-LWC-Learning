@@ -1,0 +1,6 @@
+div{
+    background:var(--slds-g-color-palette-hot-orange-90);
+    color:var(--slds-g-color-palette-blue-50);
+    margin:10px;
+    border: 1px solid black;
+}
