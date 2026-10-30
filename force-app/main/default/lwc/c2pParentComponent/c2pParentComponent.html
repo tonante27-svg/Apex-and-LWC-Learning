@@ -1,7 +1,18 @@
 <template>
-    <lightning-card title="Child To Parent Simple Event" variant="base">
-      <div class="sdls-var-m-around_medium">
-         <c-c2p-modal-component></c-c2p-modal-component>
+    <lightning-card title="Child To Parent Communication" variant="base">
+      <div class="sdls-var-p-around_large" onclosemodal={handleModal}>
+        <lightning-button 
+          variant="brand"
+          label="Show Modal" 
+          onclick={handleClick} 
+          class="sdls-var-m-around_large"
+        ></lightning-button>
+        <h1>{msg}</h1> 
+        <template lwc:if={displayModal}>
+          <c-c2p-modal-component></c-c2p-modal-component>
+
+            <!--<c-c2p-modal-component onclosemodal={handleModal}></c-c2p-modal-component>-->
+      </template>
       </div>
     </lightning-card>
 </template>
