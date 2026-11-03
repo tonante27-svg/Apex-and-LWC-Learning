@@ -1,19 +1,30 @@
 import { LightningElement,wire } from 'lwc';
 import {subscribe,unsubscribe,MessageContext,APPLICATION_SCOPE} from "lightning/messageService";
-
 import SAMPLEMC from "@salesforce/messageChannel/SampleMessageChannel__c";
+
 export default class LmsComponentX extends LightningElement {
     recievedMessage;
     subscription = null;
-    MessageContext
-    @wire(MessageContext)
-    messageContext;
+    context
 
-    // Encapsulate logic for Lightning message service subscribe 
+    @wire(MessageContext)
+    wiredMessageContect(context){
+      if (context && !this.subscription) {
+        this.context = context;
+        this.subscription = subscribe(
+          this.context,
+          SAMPLEMC,
+          (message) => this.handleMessage(message),
+          { scope: APPLICATION_SCOPE },
+        );
+      }
+    }
+
+    // Encapsulate logic for Lightning message service subscribe  for this channel SAMPLEMC
   subscribeToMessageChannel() {
     if (!this.subscription) {
       this.subscription = subscribe(
-        this.messageContext,
+        this.context,
         SAMPLEMC,
         (message) => this.handleMessage(message),
         { scope: APPLICATION_SCOPE },
@@ -27,9 +38,9 @@ export default class LmsComponentX extends LightningElement {
   }
 
   // Standard lifecycle hooks used to subscribe ti the meesg channel when loaded
-  connectedCallback() {
+ /* connectedCallback() {
     this.subscribeToMessageChannel();
-  }
+  }*/
 
   disconnectedCallback() {
     this.unsubscribeFromMessageChannel();

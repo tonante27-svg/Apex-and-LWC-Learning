@@ -3,7 +3,8 @@ import { publish, MessageContext } from "lightning/messageService";
 import SAMPLEMC from "@salesforce/messageChannel/SampleMessageChannel__c";
 export default class LmsComponentA extends LightningElement {
 
-        inputValue
+    inputValue;
+
     @wire(MessageContext)
     messageContext;
 
@@ -17,6 +18,7 @@ export default class LmsComponentA extends LightningElement {
                 value: this.inputValue
             }
         };
+        // Note that message will be usedin the subscriber on LmsComponentX to display the message published from this component
         publish(this.messageContext, SAMPLEMC, message );
     }
 }
