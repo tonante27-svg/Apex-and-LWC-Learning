@@ -1,24 +1,27 @@
 <template>
     <article class="slds-card">
         <div class="slds-card__header slds-grid">
+            <!--Header-->
             <header class="slds-media slds-media_center slds-has-flexi-truncate">
                 <div class="slds-media__body">
                     <h2 class="slds-card__header-title">
                         <div class="slds-card__header-link slds-truncate">
-                            header will come here 
+                            <slot name="title"></slot>
                         </div>
                     </h2>
                 </div>
                 <div class="slds-no-flex">
-                    <button class="slds-button slds-button_neutral">Action</button>
+                    <slot name="actions"></slot>
                 </div>
             </header>
-            <div class="slds-card__body">
-                Here Body will come
-            </div>
-            <footer class="slds-card__footer">
-                Here fooyter will come
-            </footer>
         </div>
+        <!--Body-->
+        <div class="slds-card__body slds-var-m-around_medium">
+            <slot></slot>
+        </div>
+         <!--Footer-->
+        <footer class="slds-card__footer slds-hide">
+            <slot name="footer" onslotchange={handleSlotFooterChange}></slot>
+        </footer> 
     </article>
 </template>
