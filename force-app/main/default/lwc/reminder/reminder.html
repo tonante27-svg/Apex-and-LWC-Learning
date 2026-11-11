@@ -1,0 +1,27 @@
+<template>
+    <lightning-card title="My Reminders" icon-name="standard:task" variant="base">
+      <div class="slds-var-m-around_large">
+        <div class="slds-grid slds-wrap">
+            <template for:each={toDoList} for:item="todo" for:index="index">
+                <div key={todo.id} class="slds-col slds-size_1-of-3">
+                    <div class="parent-container">
+                        <div class="heading-container">
+                            {todo.Subject}
+                        </div>
+                        <div class="text-container">
+                            <p><strong>Desciprtion:</strong>{todo.Description}</p>
+                            <p><strong>Due Date:</strong>{todo.ActivityDate}</p>
+                        </div>
+                        <div class="button-container">
+                            <!--buttpns-->
+                            <lightning-icon icon-name="action:preview" size="xx-small"></lightning-icon>
+                              &nbsp;
+                            <lightning-icon icon-name="action:edit" size="xx-small"></lightning-icon>
+                        </div>
+                    </div>
+                </div>
+            </template>
+        </div>
+      </div>
+    </lightning-card>
+</template>

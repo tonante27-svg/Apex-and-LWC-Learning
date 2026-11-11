@@ -1,0 +1,91 @@
+<template>
+    <lightning-card title="To Do List Tasker" icon-name="standard:task" variant="base">
+        <lightning-spinner 
+          alternative-text="Loading" 
+          size="small"
+          variant="brand"
+          lwc:if={isLoading}
+        ></lightning-spinner> 
+        <lightning-layout multiple-rows>
+            <lightning-layout-item size="12" padding="around-small" small-device-size="12" medium-device-size="6" large-device-size="6">
+              <div class="custom-box">
+                 <lightning-input 
+                    type="text"
+                    label="Subject"
+                    name = "Subject"
+                    required="true"
+                    value={subjectValue}
+                    onchange={handleOnChange}
+                ></lightning-input><br/>
+                <lightning-input 
+                    type="date" 
+                    name="ActivityDate" 
+                    label="Due Date" 
+                    required="true"
+                    value={dateValue}
+                    onchange={handleOnChange}
+                ></lightning-input><br/>
+              </div>
+            </lightning-layout-item>
+             <lightning-layout-item size="12" padding="around-small" small-device-size="12" medium-device-size="6" large-device-size="6">
+              <div class="custom-box">
+                <!-- STatus-->
+                <lightning-combobox
+                    name="Status"
+                    label="Status"
+                    placeholder="Select Status"
+                    options={statusOptions}
+                    onchange={handleOnChange} 
+                    required="true"
+                    value={statusValue}
+                ></lightning-combobox><br/>
+                <!--Priority-->
+                <lightning-combobox
+                    name="Priority"
+                    label="Priority"
+                    placeholder="Select Priority"
+                    options={priorityOptions}
+                    onchange={handleOnChange} 
+                    required="true"
+                    value={priorityValue}
+                ></lightning-combobox><br/>
+              </div>
+            </lightning-layout-item>
+        </lightning-layout>
+        <lightning-layout multiple-rows>
+            <lightning-layout-item size="12" padding="around-small" small-device-size="12" medium-device-size="12" large-device-size="12">
+              <lightning-textarea 
+                    max-length="1000"
+                    name="Description" 
+                    label="Comments" 
+                    placeholder="type here..."
+                    value={commentValue}
+                    variant="standard"
+                    onchange={handleOnChange}
+                ></lightning-textarea>
+            </lightning-layout-item>
+        </lightning-layout>
+          
+     <lightning-layout multiple-rows>
+        <lightning-layout-item size="12" padding="around-small" small-device-size="12" medium-device-size="12" large-device-size="12">
+            <div class="slds-align_absolute-center slds-var-p-around_small" >
+                <lightning-button 
+                    variant="neutral"
+                    label="Cancel Edit" 
+                    name="cancel"
+                    onclick={handleClick} 
+                    ></lightning-button>&nbsp;&nbsp;
+                    <lightning-button 
+                    variant="brand"
+                    label="Create Todo Item" 
+                    name="create"
+                    onclick={handleClick} 
+                ></lightning-button>
+            </div>
+        </lightning-layout-item>
+     </lightning-layout>
+      
+        
+     
+    </lightning-card>
+</template>

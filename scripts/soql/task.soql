@@ -1,0 +1,3 @@
+SELECT Id, Subject, ActivityDate,
+       Description
+WHERE ActivityDate <> null
