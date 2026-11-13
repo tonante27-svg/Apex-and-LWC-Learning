@@ -1,6 +1,5 @@
 import { LightningElement,track,wire } from 'lwc';
 import fetchToDoList from '@salesforce/apex/ReminderService.fetchToDoList';
-import CreateTaskModal from "c/createTaskComponent";
 import {NavigationMixin} from 'lightning/navigation';
 export default class Reminder extends NavigationMixin(LightningElement) {
     @track toDoList = [];
@@ -11,16 +10,20 @@ export default class Reminder extends NavigationMixin(LightningElement) {
     wiredReminder({data,error}){
         if(data){
             let currentDate = new Date();
-           
-            this.toDoList = data.map(todo=>{
-                 let activityDate = todo.activityDate;
-                 let activityDateConverted = new Date(activityDate) // COnverted to JS Date Format
+            currentDate.setHours(0, 0, 0, 0);
+
+            this.toDoList = data.map(todo => {
+                let activityDateConverted = new Date(todo.ActivityDate);
+                activityDateConverted.setHours(0, 0, 0, 0);
+
+                let isOverdue = currentDate > activityDateConverted;
+
                 return {
                     ...todo,
-                    headingStyle: currentDate > activityDateConverted  ? 'color:red' : ''
+                    headingClass: `heading-container ${isOverdue ? 'overdue-heading' : 'normal-heading'}`,
+                    textClass: `text-container ${isOverdue ? 'overdue-heading' : 'normal-heading'}`
                 };
-
-                });
+            });
            
         }else if (error){
            this.errors = error;
@@ -40,12 +43,12 @@ export default class Reminder extends NavigationMixin(LightningElement) {
 
     handleRecordPreviewPage(event){
         event.preventDefault();
-        let recordId = event.CurrentTarget.dataset.recordId;
+        let recordId = event.currentTarget.dataset.recordId;
          this[NavigationMixin.Navigate]({
             type: "standard__recordPage",
             attributes: {
                 actionName:"view",
-                recordId: "recordId",
+                recordId: recordId,
                 objectApiName: "Task"
             },
         });
@@ -53,7 +56,7 @@ export default class Reminder extends NavigationMixin(LightningElement) {
 
     handleRecordEditPage(event){
         event.preventDefault();
-        let recordId = event.CurrentTarget.dataset.recordId;
+        let recordId = event.currentTarget.dataset.recordId;
          this[NavigationMixin.Navigate]({
             type: "standard__recordPage",
             attributes: {

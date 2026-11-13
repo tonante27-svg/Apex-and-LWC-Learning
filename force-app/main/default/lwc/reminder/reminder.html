@@ -13,12 +13,12 @@
                 
                 <div key={todo.id} class="slds-col slds-size_1-of-3">
                     <div class="parent-container">
-                        <div class="heading-container" style={todo.headingStyle}>
-                            {todo.Subject}
+                        <div class={todo.headingClass}>
+                                {todo.Subject}
                         </div>
-                        <div class="text-container">
-                            <p><strong>Description:</strong>{todo.Description}</p>
-                            <p><strong>Due Date:</strong>{todo.ActivityDate}</p>
+                        <div>
+                            <p class={todo.textClass}><strong>Due Date:</strong>{todo.ActivityDate}</p>
+                            <p class="text-container"><strong>Description:</strong>{todo.Description}</p>
                         </div>
                         <div class="button-container">
                             <!--buttpns-->

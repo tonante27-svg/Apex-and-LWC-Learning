@@ -31,8 +31,6 @@ export default class CreateTaskComponent extends LightningElement {
     wirePicklistStatus({data,error}){
         if(data){
             this.statusOptions = data;
-            console.log('=====GOT IT === '+data);
-            
         }else if(error){
             console.error(error);
         }
@@ -97,15 +95,11 @@ export default class CreateTaskComponent extends LightningElement {
     }   
     async createNewRecord(){
         try{
-            console.log(`OBJECT NAME:===> ${this.objApiName}`);
-            console.log(`FILED VALUES:===> ${this.recordToCreate}`);
             let resultId = await createToDoItem({
-                                                objApiName:this.objApiName,
-                                                fieldValues:this.recordToCreate
+                                        objApiName:this.objApiName,
+                                        fieldValues:this.recordToCreate
             });
-            console.log(`Result ID = >${resultId}`);
             this.callToast('Successfully Created A Record','A New '+this.objApiName+' was created.','success');
-            console.log('CHILD: Dispatching success event');
             this.dispatchEvent(
                 new CustomEvent('success')
             );

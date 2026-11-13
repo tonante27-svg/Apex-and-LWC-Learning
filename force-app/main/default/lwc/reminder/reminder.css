@@ -43,3 +43,11 @@
     max-height: 10vh;
     overflow-y: auto;
 }
+
+.overdue-heading {
+    color: red;
+}
+
+.normal-heading {
+    color: inherit;
+}
