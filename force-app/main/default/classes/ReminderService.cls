@@ -56,7 +56,7 @@ public with sharing class ReminderService {
     public static List<Task> fetchToDoList(){
         try{
         return [
-                SELECT Id, Subject, ActivityDate,Description 
+                SELECT Id, Subject, ActivityDate,Description,Status,Priority 
                 FROM TASK
                 WHERE ActivityDate != null 
                 AND OwnerID =: UserInfo.getUserId()];

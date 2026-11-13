@@ -1,6 +1,6 @@
 // Dynamic Creation of. any object record  incuding picklist handling.
 
-import { LightningElement,wire,track } from 'lwc';
+import { LightningElement,wire,track,api } from 'lwc';
 import { CloseActionScreenEvent } from 'lightning/actions';
 import createToDoItem from '@salesforce/apex/ReminderService.createToDoItem';
 import fetchPickListValues from '@salesforce/apex/ReminderService.fetchPickListValues';
@@ -10,12 +10,13 @@ export default class CreateTaskComponent extends LightningElement {
 
     subjectValue;
     dateValue;
-    statusValue='';
+    statusValue='This ismy subject';
     priorityValue='';
     commentValue;
     isLoading=false;
 
-    recordToCreate ={
+    @api recordId;
+    @api recordToCreate ={
         "Status":"",
         "ActivityDate":null,
         "Subject":"",
@@ -54,7 +55,7 @@ export default class CreateTaskComponent extends LightningElement {
         this.recordToCreate[fieldName] = fieldValue;
     }   
 
-    handleClick(event){
+    handleSubmit(event){
         event.preventDefault();
         
         if(event.currentTarget.name === 'create'){
@@ -68,7 +69,9 @@ export default class CreateTaskComponent extends LightningElement {
                 if(!this.objApiName){
                         this.objApiName = 'Task';
                 }
-            
+                if(this.recordId){// Edit Button 
+                    this.recordToCreate.Id = this.recordId;
+                }
                 this.isLoading = true;
                 this.createNewRecord();
                         

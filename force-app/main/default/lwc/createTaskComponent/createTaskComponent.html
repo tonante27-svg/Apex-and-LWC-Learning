@@ -14,7 +14,7 @@
                     label="Subject"
                     name = "Subject"
                     required="true"
-                    value={subjectValue}
+                    value={recordToCreate.Subject}
                     onchange={handleOnChange}
                 ></lightning-input><br/>
                 <lightning-input 
@@ -22,7 +22,7 @@
                     name="ActivityDate" 
                     label="Due Date" 
                     required="true"
-                    value={dateValue}
+                    value={recordToCreate.ActivityDate}
                     onchange={handleOnChange}
                 ></lightning-input><br/>
               </div>
@@ -37,7 +37,7 @@
                     options={statusOptions}
                     onchange={handleOnChange} 
                     required="true"
-                    value={statusValue}
+                    value={recordToCreate.Status}
                 ></lightning-combobox><br/>
                 <!--Priority-->
                 <lightning-combobox
@@ -47,7 +47,7 @@
                     options={priorityOptions}
                     onchange={handleOnChange} 
                     required="true"
-                    value={priorityValue}
+                    value={recordToCreate.Priority}
                 ></lightning-combobox><br/>
               </div>
             </lightning-layout-item>
@@ -59,7 +59,7 @@
                     name="Description" 
                     label="Comments" 
                     placeholder="type here..."
-                    value={commentValue}
+                    value={recordToCreate.Description}
                     variant="standard"
                     onchange={handleOnChange}
                 ></lightning-textarea>
@@ -73,7 +73,7 @@
                     variant="brand"
                     label="Create Todo Item" 
                     name="create"
-                    onclick={handleClick} 
+                    onclick={handleSubmit} 
                 ></lightning-button>
             </div>
         </lightning-layout-item>

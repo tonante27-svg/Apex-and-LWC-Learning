@@ -2,9 +2,13 @@ import { LightningElement,track,wire } from 'lwc';
 import fetchToDoList from '@salesforce/apex/ReminderService.fetchToDoList';
 import {NavigationMixin} from 'lightning/navigation';
 export default class Reminder extends NavigationMixin(LightningElement) {
+
     @track toDoList = [];
     @track errors;
     showModal = false;
+    editModal = false;
+    @track selectedRecord;
+    @track selectedEditRecord;
 
     @wire(fetchToDoList)
     wiredReminder({data,error}){
@@ -39,31 +43,36 @@ export default class Reminder extends NavigationMixin(LightningElement) {
 
     handleClose(){
         this.showModal = false; 
+        this.selectedRecord = undefined;
+        this.editModal = false;
     }
 
     handleRecordPreviewPage(event){
         event.preventDefault();
+        
         let recordId = event.currentTarget.dataset.recordId;
-         this[NavigationMixin.Navigate]({
-            type: "standard__recordPage",
-            attributes: {
-                actionName:"view",
-                recordId: recordId,
-                objectApiName: "Task"
-            },
+        /* Use either Array.forEach() loop or Array.find()
+        this.toDoList.forEach(todo=>{
+            if(recordId == todo.Id){
+                this.selectedRecord= todo;
+            }
+        });
+        */
+
+        this.selectedRecord = this.toDoList.find((item)=>{
+            console.log(`===== PRINT RECORD ID ===> ${item.Id}`);
+            return recordId === item.Id;
         });
     }
 
     handleRecordEditPage(event){
         event.preventDefault();
         let recordId = event.currentTarget.dataset.recordId;
-         this[NavigationMixin.Navigate]({
-            type: "standard__recordPage",
-            attributes: {
-                actionName:"edit",
-                recordId: recordId,
-                objectApiName: "Task"
-            },
+        this.editModal = true;
+        this.selectedEditRecord = this.toDoList.find((todo)=>{
+            console.log(`===== PRINT RECORD ID ===> ${todo.Id}`);
+            return recordId === todo.Id;
         });
+       
     }
 }
