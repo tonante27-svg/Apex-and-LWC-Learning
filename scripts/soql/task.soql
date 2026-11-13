@@ -1,3 +1,4 @@
 SELECT Id, Subject, ActivityDate,
-       Description
-WHERE ActivityDate <> null
+       Description 
+FROM TASK
+WHERE ActivityDate <> null AND OwnerID = UserInfo.getUserId()

@@ -1,16 +1,10 @@
 // Dynamic Creation of. any object record  incuding picklist handling.
 
 import { LightningElement,wire,track } from 'lwc';
-import {getObjectInfo} from 'lightning/uiObjectInfoApi';
-import {getPicklistValues } from 'lightning/uiObjectInfoApi';
-import TASK_OBJECT from '@salesforce/schema/Task';
-import STATUS_FIELD from '@salesforce/schema/Task.Status';
-import PRIORITY_FIELD from '@salesforce/schema/Task.Priority';
 import { CloseActionScreenEvent } from 'lightning/actions';
-import fetchPickListValues from '@salesforce/apex/ReminderService.fetchPickListValues';
 import createToDoItem from '@salesforce/apex/ReminderService.createToDoItem';
+import fetchPickListValues from '@salesforce/apex/ReminderService.fetchPickListValues';
 import Toast from 'lightning/toast';
-import ActivityDate from '@salesforce/schema/Task.ActivityDate';
 
 export default class CreateTaskComponent extends LightningElement {
 
@@ -49,8 +43,6 @@ export default class CreateTaskComponent extends LightningElement {
     wirePicklistPriority({data,error}){
         if(data){
              this.priorityOptions = data;
-            console.log('=====GOT IT === '+data);
-            
         }else if(error){
             console.error(error);
         }
@@ -70,7 +62,6 @@ export default class CreateTaskComponent extends LightningElement {
         if(event.currentTarget.name === 'create'){
             // Validate all lightning input and combo boxes that are reuired
             const allValid  = this.validateRequiedInputTypes();
-            console.log('We afiled? ===> '+allValid);
             if(!allValid){
                 this.callToast('Order Entry Error','Please update the invalid form entries and try again','error');
                 return;
@@ -114,13 +105,16 @@ export default class CreateTaskComponent extends LightningElement {
             });
             console.log(`Result ID = >${resultId}`);
             this.callToast('Successfully Created A Record','A New '+this.objApiName+' was created.','success');
+            console.log('CHILD: Dispatching success event');
+            this.dispatchEvent(
+                new CustomEvent('success')
+            );
         }catch(error){
             this.callToast('Exception Thrown',error.body.message,'error');
         }finally{
             this.isLoading = false;
         }
     }
-
     callToast(lab,msg,btype){
         Toast.show({
             label:lab,

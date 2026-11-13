@@ -51,6 +51,19 @@ public with sharing class ReminderService {
             throw new AuraHandledException(e.getMessage());
         }
     }
+
+    @AuraEnabled(cacheable=true)
+    public static List<Task> fetchToDoList(){
+        try{
+        return [
+                SELECT Id, Subject, ActivityDate,Description 
+                FROM TASK
+                WHERE ActivityDate != null 
+                AND OwnerID =: UserInfo.getUserId()];
+        }catch(Exception e){
+            throw new AuraHandledException(e.getMessage());
+        }
+    }
     
     //Wrapper
     public class PickList {

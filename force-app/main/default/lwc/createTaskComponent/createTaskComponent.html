@@ -1,5 +1,5 @@
 <template>
-    <lightning-card title="To Do List Tasker" icon-name="standard:task" variant="base">
+    <!--<lightning-card variant="base">-->
         <lightning-spinner 
           alternative-text="Loading" 
           size="small"
@@ -69,12 +69,6 @@
      <lightning-layout multiple-rows>
         <lightning-layout-item size="12" padding="around-small" small-device-size="12" medium-device-size="12" large-device-size="12">
             <div class="slds-align_absolute-center slds-var-p-around_small" >
-                <lightning-button 
-                    variant="neutral"
-                    label="Cancel Edit" 
-                    name="cancel"
-                    onclick={handleClick} 
-                    ></lightning-button>&nbsp;&nbsp;
                     <lightning-button 
                     variant="brand"
                     label="Create Todo Item" 
@@ -87,5 +81,5 @@
       
         
      
-    </lightning-card>
+    <!--</lightning-card>-->
 </template>

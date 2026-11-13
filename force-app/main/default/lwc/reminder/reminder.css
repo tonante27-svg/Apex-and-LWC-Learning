@@ -1,0 +1,45 @@
+.parent-container{
+    background: lightblue;
+    position: relative;
+    height: 150px;
+    margin: 12px;
+    padding: 12px;
+    border-radius:12px;
+    font-family: 'Salesforce Sans';
+}
+
+.heading-container{
+    text-align: center;
+    font-size: 20px;
+    font-family: 'Salesforce Sans';
+    family-weight:bold;
+}
+.text-container{
+   font-family: 'Salesforce Sans';
+   line-height: 2;
+   margin: 5px;
+}
+
+.button-container{
+    position: absolute;
+    bottom: 5px;
+    right: 50%;
+}
+.button-container:hover{
+    cursor:pointer;
+}
+.free-button{
+    padding-left: 1360px;
+}
+
+.slds-modal__container {
+    width: 40%;
+    max-width: 70rem;
+    min-width: 40rem;
+}
+
+.slds-modal__content {
+    min-height: 35rem;
+    max-height: 10vh;
+    overflow-y: auto;
+}

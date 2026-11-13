@@ -1,22 +1,30 @@
 <template>
-    <lightning-card title="My Reminders" icon-name="standard:task" variant="base">
+    <lightning-card title="My Reminders" icon-name="standard:task" >
       <div class="slds-var-m-around_large">
+        <lightning-button 
+                  variant="neutral"
+                  label="Manage Reminders" 
+                  slot="actions"
+                  onclick={handleClick} 
+                  class="free-button"
+                ></lightning-button>
         <div class="slds-grid slds-wrap">
-            <template for:each={toDoList} for:item="todo" for:index="index">
+            <template for:each={toDoList} for:item="todo" for:index="index" lwc:if={toDoList}>
+                
                 <div key={todo.id} class="slds-col slds-size_1-of-3">
                     <div class="parent-container">
-                        <div class="heading-container">
+                        <div class="heading-container" style={todo.headingStyle}>
                             {todo.Subject}
                         </div>
                         <div class="text-container">
-                            <p><strong>Desciprtion:</strong>{todo.Description}</p>
+                            <p><strong>Description:</strong>{todo.Description}</p>
                             <p><strong>Due Date:</strong>{todo.ActivityDate}</p>
                         </div>
                         <div class="button-container">
                             <!--buttpns-->
-                            <lightning-icon icon-name="action:preview" size="xx-small"></lightning-icon>
+                            <lightning-icon data-record-id={todo.Id} icon-name="action:preview" size="xx-small" onclick={handleRecordPreviewPage}></lightning-icon>
                               &nbsp;
-                            <lightning-icon icon-name="action:edit" size="xx-small"></lightning-icon>
+                            <lightning-icon data-record-id={todo.Id} icon-name="action:edit" size="xx-small" onclick={handleRecordEditPage}></lightning-icon>
                         </div>
                     </div>
                 </div>
@@ -24,4 +32,35 @@
         </div>
       </div>
     </lightning-card>
+    <template lwc:if={showModal}>
+        <section
+            role="dialog"
+            tabindex="-1"
+            aria-modal="true"
+            aria-labelledby="modal-heading-01"
+            class="slds-modal slds-fade-in-open"
+        >
+            <div class="slds-modal__container">
+                <button class="slds-button slds-button_icon slds-modal__close">
+                    <svg class="slds-button__icon slds-button__icon_large" aria-hidden="true" viewBox="0 0 520 520">
+                        <path
+                            d="M310 254l130-131c6-6 6-15 0-21l-20-21c-6-6-15-6-21 0L268 212a10 10 0 01-14 0L123 80c-6-6-15-6-21 0l-21 21c-6 6-6 15 0 21l131 131c4 4 4 10 0 14L80 399c-6 6-6 15 0 21l21 21c6 6 15 6 21 0l131-131a10 10 0 0114 0l131 131c6 6 15 6 21 0l21-21c6-6 6-15 0-21L310 268a10 10 0 010-14z"
+                        />
+                    </svg>
+                    <span class="slds-assistive-text"> Cancel and close </span>
+                </button>
+                <div class="slds-modal__header">
+                    <h1 id="modal-heading-01" class="slds-modal__title slds-hyphenate" tabindex="-1">Manage New Reminder</h1>
+                </div>
+                <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                    <c-create-task-component onsuccess={handleClose}></c-create-task-component>
+                </div>
+                <div class="slds-modal__footer">
+                    <button class="slds-button slds-button_neutral" aria-label="Cancel and close" onclick={handleClose}>Cancel</button>
+                </div>
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open" role="presentation"></div>
+
+    </template>
 </template>
